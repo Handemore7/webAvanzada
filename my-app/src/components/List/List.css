@@ -1,0 +1,6 @@
+.List {
+    display: inline-block;
+    width: 20%;
+    border: 2px solid black;
+    height: 100vh;
+}

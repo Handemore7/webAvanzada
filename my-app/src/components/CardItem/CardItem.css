@@ -1,0 +1,8 @@
+.CardItem {
+    background: red;
+    width: 100%;
+}
+
+.CardItem h1 {
+    margin: 0px;
+}
