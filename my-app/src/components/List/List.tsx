@@ -3,13 +3,14 @@ import { CardItem } from '../../components/CardItem/CardItem';
 import './List.css';
 
 interface ListProps {
-
+    name: string;
+    content?: any; //Aqui creo que deberia recibir el arreglo con los items
 }
 
-export const List:  React.FC<ListProps> = ({ }) => {
+export const List:  React.FC<ListProps> = ({name, content }) => {
     return (<div className={`List`}>
         <div className={`List__title`}>
-            <p>En espera</p> <span>4</span>
+            <p>{name}</p> <span>4</span>
         </div>
         <CardItem 
         id = {0}
