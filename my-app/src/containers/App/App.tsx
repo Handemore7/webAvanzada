@@ -1,3 +1,4 @@
+import { listenerCount } from 'node:events';
 import React from 'react';
 import { CardItem } from '../../components/CardItem/CardItem';
 import { List } from '../../components/List/List';
@@ -123,17 +124,37 @@ const initialLists = [
     },
     ];
 
+    
 
+const handleFilterList = (list: any) => {
+    var arrayList: any = [];
+    console.log(list);
+    initialCards.forEach(elem => {
+            if(elem.list == list){
+                arrayList.push(elem);
+            }
+        });
+        return (arrayList);
+}
 
 
 export const App = () => {
+    var arrayList1 = handleFilterList(1); //console.log(arrayList1);
+    var arrayList2 = handleFilterList(2); //console.log(arrayList2);
+    var arrayList3 = handleFilterList(3); //console.log(arrayList3);
+    var arrayList4 = handleFilterList(4); //console.log(arrayList4);
+    var arrayList5 = handleFilterList(5); //console.log(arrayList5);
+    
     return (<main>
+    
         {
             initialLists.map(({listName}) => {
                 return <List 
                 name = {listName}
+                content = {initialCards}
                 />
             }
+            
         )}
     </main>);
 }

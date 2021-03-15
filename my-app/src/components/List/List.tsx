@@ -8,21 +8,22 @@ interface ListProps {
 }
 
 export const List:  React.FC<ListProps> = ({name, content }) => {
+    console.log(content);
     return (<div className={`List`}>
         <div className={`List__title`}>
-            <p>{name}</p> <span>4</span>
+            <p>{name}</p> <span>5</span>
         </div>
         <CardItem 
-        id = {0}
-        title = 'Braindead'
+        id = {content[1].id}
+        title = {content[1].title}
         type = 'serie'
         rating = {5}
         image = 'imgURL'
-        category = 'Acción, Comedia'
+        category = {content[1].category}
         dateAdded = '50000000000'
         dateCompleted = '50000005000'
         comments = 'hola uwu'
         />
-        <p>Soy el elemento List</p>
+        <p>Soy el elemento List y tengo </p>
     </div>);
 }
