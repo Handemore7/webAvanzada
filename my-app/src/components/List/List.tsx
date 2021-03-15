@@ -8,25 +8,22 @@ interface ListProps {
 }
 
 export const List:  React.FC<ListProps> = ({name, content}) => {
-    console.log(content);
     return (<div className={`List`}>
         <div className={`List__title`}>
             <p>{name}</p> <span>{content.length}</span>
         </div>
         {content.map((elem: any) => {
-            console.log(elem);
             return <CardItem 
             id = {elem.id}
             title = {elem.title}
-            type = 'serie'
-            rating = {5}
-            image = 'imgURL'
+            type = {elem.type}
+            rating = {elem.rating}
+            image = {elem.image}
             category = {elem.category}
-            dateAdded = '50000000000'
-            dateCompleted = '50000005000'
+            dateAdded = {elem.dateAdded}
+            dateCompleted = {elem.dateCompleted}
             comments = {elem.comments}            
             />   
         })}
-        <p>Soy el elemento List y tengo </p>
     </div>);
 }

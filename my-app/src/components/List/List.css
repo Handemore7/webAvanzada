@@ -1,6 +1,24 @@
 .List {
+    
     display: inline-block;
     width: 20%;
     border: 2px solid black;
     height: 100vh;
+}
+.List--selected{
+    background: #2B343B;
+}
+
+.List__title {
+    background: #1B1726;
+    display: inline-flex;
+    color: white;
+    width: 100%;
+    justify-content: center;
+}
+
+.List__title span {
+    margin: auto 10px;
+    padding: 1px 5px;
+    border: 2px solid #47545F;
 }

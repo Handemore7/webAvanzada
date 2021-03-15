@@ -16,6 +16,7 @@ interface CardItemProps {
 export const CardItem:  React.FC<CardItemProps> = ({ id, title, type, rating, image, category, dateAdded, dateCompleted, comments }) => {    
     return (<div className={`CardItem`}>
         <h1>{comments}</h1>
+        <img src={image} alt="" /> 
         <p>{title}</p>
         <p>{category}</p>
     </div>);

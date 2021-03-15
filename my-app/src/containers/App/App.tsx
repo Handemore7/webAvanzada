@@ -10,7 +10,7 @@ const initialCards = [
         type: 'serie',
         list: '1',
         rating: 5,
-        image: 'imgURL',
+        image: 'defaultCardImg.png',
         category: 'Acción, Comedia',
         dateAdded: '50000000000',
         dateCompleted: '50000005000',
@@ -22,7 +22,7 @@ const initialCards = [
         type: 'serie',
         list: '3',
         rating: 4,
-        image: 'imgURL2',
+        image: '../public/images/defaultCardImg.png',
         category: 'Suspenso, Comedia',
         dateAdded: '500000000000',
         dateCompleted: '500000050000',
@@ -34,7 +34,7 @@ const initialCards = [
         type: 'pelicula',
         list: '5',
         rating: 4,
-        image: 'imgURL3',
+        image: '../public/images/defaultCardImg.png',
         category: 'Terror, Thriller',
         dateAdded: '5000000000000',
         dateCompleted: '5000000500000',
@@ -46,7 +46,7 @@ const initialCards = [
         type: 'serie',
         list: '4',
         rating: 4,
-        image: 'imgURL2',
+        image: '../public/images/defaultCardImg.png',
         category: 'Suspenso, Comedia',
         dateAdded: '500000000000',
         dateCompleted: '500000050000',
@@ -58,7 +58,7 @@ const initialCards = [
         type: 'serie',
         list: '2',
         rating: 4,
-        image: 'imgURL2',
+        image: '../public/images/defaultCardImg.png',
         category: 'Suspenso, Comedia',
         dateAdded: '500000000000',
         dateCompleted: '500000050000',
@@ -70,7 +70,7 @@ const initialCards = [
         type: 'serie',
         list: '1',
         rating: 4,
-        image: 'imgURL2',
+        image: '../public/images/defaultCardImg.png',
         category: 'Suspenso, Comedia',
         dateAdded: '500000000000',
         dateCompleted: '500000050000',
@@ -82,7 +82,7 @@ const initialCards = [
         type: 'serie',
         list: '3',
         rating: 4,
-        image: 'imgURL2',
+        image: '../public/images/defaultCardImg.png',
         category: 'Suspenso, Comedia',
         dateAdded: '500000000000',
         dateCompleted: '500000050000',
@@ -94,7 +94,7 @@ const initialCards = [
         type: 'serie',
         list: '4',
         rating: 4,
-        image: 'imgURL2',
+        image: '../public/images/defaultCardImg.png',
         category: 'Suspenso, Comedia',
         dateAdded: '500000000000',
         dateCompleted: '500000050000',
@@ -128,15 +128,18 @@ const initialLists = [
 
 const handleFilterList = (list: any) => {
     var arrayList: any = [];
-    //console.log(list);
+
     initialCards.forEach(elem => {
             if(elem.list == list){
+                //arrayList = [elem].concat(arrayList);
+                //arrayList.unshift(elem);
                 arrayList.push(elem);
             }
         });
+        console.log(arrayList);
+        
         return (arrayList);
 }
-
 
 export const App = () => {
     var arrayList1 = handleFilterList(1); //console.log(arrayList1);
