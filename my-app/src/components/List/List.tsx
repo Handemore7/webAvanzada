@@ -7,23 +7,26 @@ interface ListProps {
     content?: any; //Aqui creo que deberia recibir el arreglo con los items
 }
 
-export const List:  React.FC<ListProps> = ({name, content }) => {
+export const List:  React.FC<ListProps> = ({name, content}) => {
     console.log(content);
     return (<div className={`List`}>
         <div className={`List__title`}>
-            <p>{name}</p> <span>5</span>
+            <p>{name}</p> <span>{content.length}</span>
         </div>
-        <CardItem 
-        id = {content[1].id}
-        title = {content[1].title}
-        type = 'serie'
-        rating = {5}
-        image = 'imgURL'
-        category = {content[1].category}
-        dateAdded = '50000000000'
-        dateCompleted = '50000005000'
-        comments = 'hola uwu'
-        />
+        {content.map((elem: any) => {
+            console.log(elem);
+            return <CardItem 
+            id = {elem.id}
+            title = {elem.title}
+            type = 'serie'
+            rating = {5}
+            image = 'imgURL'
+            category = {elem.category}
+            dateAdded = '50000000000'
+            dateCompleted = '50000005000'
+            comments = {elem.comments}            
+            />   
+        })}
         <p>Soy el elemento List y tengo </p>
     </div>);
 }

@@ -14,7 +14,7 @@ const initialCards = [
         category: 'Acción, Comedia',
         dateAdded: '50000000000',
         dateCompleted: '50000005000',
-        comments: 'hola uwu',
+        comments: 'hola',
     },
     {
         id: 1,
@@ -128,7 +128,7 @@ const initialLists = [
 
 const handleFilterList = (list: any) => {
     var arrayList: any = [];
-    console.log(list);
+    //console.log(list);
     initialCards.forEach(elem => {
             if(elem.list == list){
                 arrayList.push(elem);
@@ -144,17 +144,20 @@ export const App = () => {
     var arrayList3 = handleFilterList(3); //console.log(arrayList3);
     var arrayList4 = handleFilterList(4); //console.log(arrayList4);
     var arrayList5 = handleFilterList(5); //console.log(arrayList5);
+    var arraysLists = [arrayList1, arrayList2, arrayList3, arrayList4, arrayList5];
+    
     
     return (<main>
     
         {
-            initialLists.map(({listName}) => {
+            initialLists.map(({listName, id}, index) => {
+                //console.log(arraysLists[index]);
                 return <List 
+                key = {id}
                 name = {listName}
-                content = {initialCards}
+                content = {arraysLists[index]}
                 />
             }
-            
         )}
     </main>);
 }
