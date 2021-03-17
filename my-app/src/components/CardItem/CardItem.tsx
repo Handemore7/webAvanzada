@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './CardItem.css';
 
-interface CardItemProps {
+export interface CardItemProps {
     id : number;
     title: string;
     type: string;
@@ -11,13 +11,18 @@ interface CardItemProps {
     dateAdded: string;
     dateCompleted?: string;
     comments?: string;
+    onDeleteItem: () => void;
+    onAddItem: () => void;
 }
 
-export const CardItem:  React.FC<CardItemProps> = ({ id, title, type, rating, image, category, dateAdded, dateCompleted, comments }) => {    
-    return (<div className={`CardItem`}>
-        <h1>{comments}</h1>
+export const CardItem:  React.FC<CardItemProps> = ({ id, title, type, rating, image, category, dateAdded, dateCompleted, comments, onDeleteItem, onAddItem }) => {    
+    
+    
+    return (<div onMouseDown={onDeleteItem} onMouseUp={onAddItem} className={`CardItem`}>
+        <h1>{title}</h1>
         <img src={image} alt="" /> 
-        <p>{title}</p>
+        <p>id: {id}</p>
+        <p>{comments}</p>
         <p>{category}</p>
     </div>);
 }

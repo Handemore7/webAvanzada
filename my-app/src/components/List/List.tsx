@@ -1,18 +1,36 @@
 import * as React from 'react';
-import { CardItem } from '../../components/CardItem/CardItem';
+import { CardItem, CardItemProps } from '../../components/CardItem/CardItem';
 import './List.css';
 
 interface ListProps {
+    id: number;
     name: string;
-    content?: any; //Aqui creo que deberia recibir el arreglo con los items
+    content: CardItemProps[];
+    handleDeleteItem: (id: number) => void;
+    handleListAdd: (listId: any, cardId: any) => void;
+
 }
 
-export const List:  React.FC<ListProps> = ({name, content}) => {
+
+var lastItem: number ; 
+export const List:  React.FC<ListProps> = ({id, name, content, handleDeleteItem, handleListAdd}) => {
+    
+    //console.log('hola');
     return (<div className={`List`}>
         <div className={`List__title`}>
             <p>{name}</p> <span>{content.length}</span>
         </div>
         {content.map((elem: any) => {
+            const interDeleteItem = () =>{
+                handleDeleteItem(elem.id);
+                //console.log(lastItem);
+                lastItem = elem.id;
+                //console.log(lastItem);
+            }
+            const interListAdd = () =>{
+                //console.log(id, lastItem);
+                handleListAdd(id, lastItem); //Dropear sobre una lista, no sobre una carta
+            }
             return <CardItem 
             id = {elem.id}
             title = {elem.title}
@@ -22,7 +40,9 @@ export const List:  React.FC<ListProps> = ({name, content}) => {
             category = {elem.category}
             dateAdded = {elem.dateAdded}
             dateCompleted = {elem.dateCompleted}
-            comments = {elem.comments}            
+            comments = {elem.comments}   
+            onDeleteItem = {interDeleteItem} 
+            onAddItem = {interListAdd}        
             />   
         })}
     </div>);

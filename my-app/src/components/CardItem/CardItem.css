@@ -5,4 +5,5 @@
 
 .CardItem h1 {
     margin: 0px;
+    user-select: none;
 }

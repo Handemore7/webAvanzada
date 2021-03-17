@@ -8,7 +8,7 @@ const initialCards = [
         id: 0,
         title: 'Braindead',
         type: 'serie',
-        list: '1',
+        list: 1,
         rating: 5,
         image: 'defaultCardImg.png',
         category: 'Acción, Comedia',
@@ -20,7 +20,7 @@ const initialCards = [
         id: 1,
         title: 'The Good Doctor',
         type: 'serie',
-        list: '3',
+        list: 3,
         rating: 4,
         image: '../public/images/defaultCardImg.png',
         category: 'Suspenso, Comedia',
@@ -32,7 +32,7 @@ const initialCards = [
         id: 2,
         title: 'xd la pelicula',
         type: 'pelicula',
-        list: '5',
+        list: 5,
         rating: 4,
         image: '../public/images/defaultCardImg.png',
         category: 'Terror, Thriller',
@@ -44,7 +44,7 @@ const initialCards = [
         id: 3,
         title: 'pelicula4',
         type: 'serie',
-        list: '4',
+        list: 4,
         rating: 4,
         image: '../public/images/defaultCardImg.png',
         category: 'Suspenso, Comedia',
@@ -56,7 +56,7 @@ const initialCards = [
         id: 4,
         title: 'pelicula5',
         type: 'serie',
-        list: '2',
+        list: 2,
         rating: 4,
         image: '../public/images/defaultCardImg.png',
         category: 'Suspenso, Comedia',
@@ -68,7 +68,7 @@ const initialCards = [
         id: 5,
         title: 'pelicula6',
         type: 'serie',
-        list: '1',
+        list: 1,
         rating: 4,
         image: '../public/images/defaultCardImg.png',
         category: 'Suspenso, Comedia',
@@ -80,7 +80,7 @@ const initialCards = [
         id: 6,
         title: 'pelicula7',
         type: 'serie',
-        list: '3',
+        list: 3,
         rating: 4,
         image: '../public/images/defaultCardImg.png',
         category: 'Suspenso, Comedia',
@@ -92,7 +92,7 @@ const initialCards = [
         id: 7,
         title: 'pelicula8',
         type: 'serie',
-        list: '4',
+        list: 4,
         rating: 4,
         image: '../public/images/defaultCardImg.png',
         category: 'Suspenso, Comedia',
@@ -103,62 +103,73 @@ const initialCards = [
     ];
 const initialLists = [
     {
-        id: 0,
+        id: 1,
         listName: 'En espera',
     },
     {
-        id: 1,
+        id: 2,
         listName: 'Planeado',
     },
     {
-        id: 2,
+        id: 3,
         listName: 'En proceso',
     },
     {
-        id: 3,
+        id: 4,
         listName: 'Abandonado',
     },
     {
-        id: 4,
+        id: 5,
         listName: 'Completado',
     },
     ];
 
-    
-
-const handleFilterList = (list: any) => {
+const handleFilterList = (list: any) => { //Usar la funcion filter
     var arrayList: any = [];
-
     initialCards.forEach(elem => {
-            if(elem.list == list){
-                //arrayList = [elem].concat(arrayList);
-                //arrayList.unshift(elem);
-                arrayList.push(elem);
+            if(elem.list === list){
+                arrayList.unshift(elem);
+                //arrayList.push(elem);
             }
         });
-        console.log(arrayList);
-        
         return (arrayList);
 }
 
+
 export const App = () => {
-    var arrayList1 = handleFilterList(1); //console.log(arrayList1);
-    var arrayList2 = handleFilterList(2); //console.log(arrayList2);
-    var arrayList3 = handleFilterList(3); //console.log(arrayList3);
-    var arrayList4 = handleFilterList(4); //console.log(arrayList4);
-    var arrayList5 = handleFilterList(5); //console.log(arrayList5);
-    var arraysLists = [arrayList1, arrayList2, arrayList3, arrayList4, arrayList5];
     
+    const [lists, setLists] = React.useState(initialLists);
+    const [cards, setCards] = React.useState(initialCards);
+
+    const handleListRemove = (id: number) => {
+        const index = cards.findIndex((elem) => {
+            return elem.id === id;
+        });
+        const copy = cards.slice();
+        copy[index].list *= -1;
+        setCards(copy);
+        //console.log(copy, id, index);
+        } 
+
+    const handleListAdd = (listId: number, cardId: number) => {
+        const index = cards.findIndex((elem) => {
+            return elem.id === cardId;
+        });
+        const copy = cards.slice();
+        copy[index].list = listId;
+        setCards(copy);
+        console.log('listId: '+listId + '. cardId: ' + cardId);
+    }
     
     return (<main>
-    
         {
-            initialLists.map(({listName, id}, index) => {
-                //console.log(arraysLists[index]);
+            lists.map(({listName, id}, index) => {  
                 return <List 
-                key = {id}
+                id = {id}
                 name = {listName}
-                content = {arraysLists[index]}
+                content = {handleFilterList(id)}
+                handleDeleteItem = {handleListRemove}
+                handleListAdd = {handleListAdd}
                 />
             }
         )}
