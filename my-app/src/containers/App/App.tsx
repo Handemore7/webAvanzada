@@ -157,6 +157,9 @@ export const App = () => {
         const index = cards.findIndex((elem) => {
             return elem.id === cardId;
         });
+
+        //const item = cards.find((elem) => elem.id === cardId);
+
         const copy = cards.slice();
         copy[index].list = listId;
         setCards(copy);

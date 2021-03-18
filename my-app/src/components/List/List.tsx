@@ -10,47 +10,49 @@ interface ListProps {
     handleDeleteItem: (id: number) => void;
     handleDragItem: (id: number) => void;
     handleListAdd: (listId: any, cardId: any) => void;
-
 }
 
-
 var lastItem: number|undefined ; //No debe almacenarlo para siempre
+var listID2: number;
 export const List:  React.FC<ListProps> = ({id, name, content, handleDeleteItem, handleListAdd, handleDragItem}) => {
-    
-    //En el onMouseUp deberia especificarle que es dentro de la ventana, tipo window.onMouseUp={interListAdd} para que al salir se cancele creo
-    //Tengo que hacer que este elemento list se droppable, para que pueda acabar el drag aqui
-    return (<div className={`List`} > 
+
+    const prevent = (event: any) =>{
+        event.preventDefault();
+    }
+    const preventOnDrop = (event: any) =>{
+        event.preventDefault();
+        listID2= id;
+    }
+    return (<div className={`List`} onDragOver={prevent} onDragEnter={prevent} onDrop={preventOnDrop}> 
         <div className={`List__title`}>
             <p>{name}</p> <span>{content.length}</span>
         </div>
         {content.map((elem: any) => {
             const interDeleteItem = () =>{
                 console.log('Elimine el item');
-
-                
-
-                console.log(elem.list);
+                //console.log(elem.list);
             }
 
             const interDragItem = () =>{
-                console.log('En medio del drag');
+                //console.log('En medio del drag');
             }
 
             const interClickItem = () =>{
-                console.log('Me estan clickeandooo!!!');
+                //console.log('Me estan clickeandooo!!!');
             }
 
-            const interListAdd = (listId: any) =>{
-                console.log('El drag termina');
+            const interListAdd = () =>{
+                //console.log('El drag termina');
                 handleDeleteItem(elem.id);
                         lastItem = elem.id;
 
-                console.log('list: '+listId+ '  cardId:'+ lastItem);
-                handleListAdd(listId, lastItem);
-                /* if (id!=undefined) {
+                console.log('list: '+listID2+ '  cardId:'+ lastItem);
+                
+                handleListAdd(listID2, lastItem);
+                /* if (listID2!=undefined) {
                     if (lastItem!=undefined) {
+                        lastItem=undefined;
                     }
-                    lastItem=undefined;
                 }else{
                   console.log('undefineDDDDDDD'); 
                 } */
