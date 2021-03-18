@@ -1,0 +1,19 @@
+.MainItem{
+    background: chartreuse;
+    width: 80%;
+    margin: 0px auto;
+    display: flex;
+}
+
+.MainItem img{
+    display: inline;
+    margin: 20px;
+}
+
+.content{
+    display: inline-block;
+}
+
+.content h1{
+  
+}

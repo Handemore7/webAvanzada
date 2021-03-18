@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { CardItem, CardItemProps } from '../../components/CardItem/CardItem';
+import { detectMouseMovement } from '../../utils/detectMouseMovement';
 import './List.css';
 
 interface ListProps {
@@ -7,30 +8,55 @@ interface ListProps {
     name: string;
     content: CardItemProps[];
     handleDeleteItem: (id: number) => void;
+    handleDragItem: (id: number) => void;
     handleListAdd: (listId: any, cardId: any) => void;
 
 }
 
 
-var lastItem: number ; 
-export const List:  React.FC<ListProps> = ({id, name, content, handleDeleteItem, handleListAdd}) => {
+var lastItem: number|undefined ; //No debe almacenarlo para siempre
+export const List:  React.FC<ListProps> = ({id, name, content, handleDeleteItem, handleListAdd, handleDragItem}) => {
     
-    //console.log('hola');
-    return (<div className={`List`}>
+    //En el onMouseUp deberia especificarle que es dentro de la ventana, tipo window.onMouseUp={interListAdd} para que al salir se cancele creo
+    //Tengo que hacer que este elemento list se droppable, para que pueda acabar el drag aqui
+    return (<div className={`List`} > 
         <div className={`List__title`}>
             <p>{name}</p> <span>{content.length}</span>
         </div>
         {content.map((elem: any) => {
             const interDeleteItem = () =>{
+                console.log('Elimine el item');
+
+                
+
+                console.log(elem.list);
+            }
+
+            const interDragItem = () =>{
+                console.log('En medio del drag');
+            }
+
+            const interClickItem = () =>{
+                console.log('Me estan clickeandooo!!!');
+            }
+
+            const interListAdd = (listId: any) =>{
+                console.log('El drag termina');
                 handleDeleteItem(elem.id);
-                //console.log(lastItem);
-                lastItem = elem.id;
-                //console.log(lastItem);
+                        lastItem = elem.id;
+
+                console.log('list: '+listId+ '  cardId:'+ lastItem);
+                handleListAdd(listId, lastItem);
+                /* if (id!=undefined) {
+                    if (lastItem!=undefined) {
+                    }
+                    lastItem=undefined;
+                }else{
+                  console.log('undefineDDDDDDD'); 
+                } */
             }
-            const interListAdd = () =>{
-                //console.log(id, lastItem);
-                handleListAdd(id, lastItem); //Dropear sobre una lista, no sobre una carta
-            }
+            
+            
             return <CardItem 
             id = {elem.id}
             title = {elem.title}
@@ -42,7 +68,9 @@ export const List:  React.FC<ListProps> = ({id, name, content, handleDeleteItem,
             dateCompleted = {elem.dateCompleted}
             comments = {elem.comments}   
             onDeleteItem = {interDeleteItem} 
-            onAddItem = {interListAdd}        
+            onDragItem = {interDragItem}
+            onAddItem = {interListAdd}
+            onClickItem = {interClickItem}
             />   
         })}
     </div>);

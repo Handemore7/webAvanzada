@@ -2,6 +2,8 @@ import { listenerCount } from 'node:events';
 import React from 'react';
 import { CardItem } from '../../components/CardItem/CardItem';
 import { List } from '../../components/List/List';
+import { MainItem } from '../../components/MainItem/MainItem';
+import { detectMouseMovement } from '../../utils/detectMouseMovement';
 
 const initialCards = [
     {
@@ -22,23 +24,23 @@ const initialCards = [
         type: 'serie',
         list: 3,
         rating: 4,
-        image: '../public/images/defaultCardImg.png',
+        image: 'defaultCardImg.png',
         category: 'Suspenso, Comedia',
         dateAdded: '500000000000',
         dateCompleted: '500000050000',
-        comments: 'K onda bb',
+        comments: 'maso',
     },
     {
         id: 2,
-        title: 'xd la pelicula',
+        title: 'La pelicula',
         type: 'pelicula',
         list: 5,
         rating: 4,
-        image: '../public/images/defaultCardImg.png',
+        image: 'defaultCardImg.png',
         category: 'Terror, Thriller',
         dateAdded: '5000000000000',
         dateCompleted: '5000000500000',
-        comments: 'Nooooo alta movie wacho',
+        comments: 'Nooooo alta movie ',
     },
     {
         id: 3,
@@ -46,7 +48,7 @@ const initialCards = [
         type: 'serie',
         list: 4,
         rating: 4,
-        image: '../public/images/defaultCardImg.png',
+        image: 'defaultCardImg.png',
         category: 'Suspenso, Comedia',
         dateAdded: '500000000000',
         dateCompleted: '500000050000',
@@ -58,7 +60,7 @@ const initialCards = [
         type: 'serie',
         list: 2,
         rating: 4,
-        image: '../public/images/defaultCardImg.png',
+        image: 'defaultCardImg.png',
         category: 'Suspenso, Comedia',
         dateAdded: '500000000000',
         dateCompleted: '500000050000',
@@ -70,7 +72,7 @@ const initialCards = [
         type: 'serie',
         list: 1,
         rating: 4,
-        image: '../public/images/defaultCardImg.png',
+        image: 'defaultCardImg.png',
         category: 'Suspenso, Comedia',
         dateAdded: '500000000000',
         dateCompleted: '500000050000',
@@ -82,7 +84,7 @@ const initialCards = [
         type: 'serie',
         list: 3,
         rating: 4,
-        image: '../public/images/defaultCardImg.png',
+        image: 'defaultCardImg.png',
         category: 'Suspenso, Comedia',
         dateAdded: '500000000000',
         dateCompleted: '500000050000',
@@ -94,7 +96,7 @@ const initialCards = [
         type: 'serie',
         list: 4,
         rating: 4,
-        image: '../public/images/defaultCardImg.png',
+        image: 'defaultCardImg.png',
         category: 'Suspenso, Comedia',
         dateAdded: '500000000000',
         dateCompleted: '500000050000',
@@ -128,8 +130,8 @@ const handleFilterList = (list: any) => { //Usar la funcion filter
     var arrayList: any = [];
     initialCards.forEach(elem => {
             if(elem.list === list){
-                arrayList.unshift(elem);
-                //arrayList.push(elem);
+                //arrayList.unshift(elem);
+                arrayList.push(elem);                
             }
         });
         return (arrayList);
@@ -140,6 +142,7 @@ export const App = () => {
     
     const [lists, setLists] = React.useState(initialLists);
     const [cards, setCards] = React.useState(initialCards);
+    const [antiList, setAntiList] = React.useState(initialCards);
 
     const handleListRemove = (id: number) => {
         const index = cards.findIndex((elem) => {
@@ -148,7 +151,6 @@ export const App = () => {
         const copy = cards.slice();
         copy[index].list *= -1;
         setCards(copy);
-        //console.log(copy, id, index);
         } 
 
     const handleListAdd = (listId: number, cardId: number) => {
@@ -158,20 +160,38 @@ export const App = () => {
         const copy = cards.slice();
         copy[index].list = listId;
         setCards(copy);
-        console.log('listId: '+listId + '. cardId: ' + cardId);
+        //console.log('listId: '+listId + '. cardId: ' + cardId);
+    }
+
+    var mousePos: any;
+    const handleDragItem = (id:number) =>{
+        //console.log('id, '+id);
+        mousePos = detectMouseMovement();
+        console.log(mousePos);
     }
     
-    return (<main>
+    return (<main >
         {
-            lists.map(({listName, id}, index) => {  
+            lists.map(({listName, id}) => {  
                 return <List 
                 id = {id}
                 name = {listName}
                 content = {handleFilterList(id)}
                 handleDeleteItem = {handleListRemove}
                 handleListAdd = {handleListAdd}
+                handleDragItem = {handleDragItem}
                 />
             }
         )}
+        <button >Holaaaa</button>
+        <MainItem 
+        id={1} 
+        title="Titulo del item"
+        type="Serie"
+        image="/images/defaultCardImg.png"
+        category="suspenso"
+        dateAdded="aklsjdasd"
+        comments="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam illum, nemo iste maiores commodi veniam dignissimos exercitationem ratione neque praesentium delectus repellendus cumque corporis, quibusdam omnis. Asperiores harum porro assumenda."
+        />
     </main>);
 }
