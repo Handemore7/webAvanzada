@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { CardItem, CardItemProps } from '../../components/CardItem/CardItem';
 import { detectMouseMovement } from '../../utils/detectMouseMovement';
+import { BrowserRouter, HashRouter, Route, Link } from 'react-router-dom';
 import './List.css';
 
 interface ListProps {
@@ -59,7 +60,7 @@ export const List:  React.FC<ListProps> = ({id, name, content, handleDeleteItem,
             }
             
             
-            return <CardItem 
+            return <Link to={`${elem.id}`}><CardItem 
             id = {elem.id}
             title = {elem.title}
             type = {elem.type}
@@ -73,7 +74,7 @@ export const List:  React.FC<ListProps> = ({id, name, content, handleDeleteItem,
             onDragItem = {interDragItem}
             onAddItem = {interListAdd}
             onClickItem = {interClickItem}
-            />   
+            />  </Link> 
         })}
     </div>);
 }

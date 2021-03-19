@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { getImageSrcFromFilename } from '../../utils/getImgUrl';
+import { getImgUrl } from '../../utils/getImgUrl';
 import './CardItem.css';
 
 export interface CardItemProps {
@@ -20,7 +20,7 @@ export interface CardItemProps {
 
 export const CardItem:  React.FC<CardItemProps> = ({id, title, type, rating, image, category, dateAdded, dateCompleted, comments, onDeleteItem, onDragItem, onAddItem, onClickItem}) => {  
 
-    const imgSrc = getImageSrcFromFilename(image);
+    const imgSrc = getImgUrl(image);
     return (<div draggable={true} onDragStart={onDeleteItem} onDrag={onDragItem} onDragEnd={onAddItem} onClick={onClickItem} className={`CardItem`}>
         <h1>{title}</h1>
         <img src={imgSrc} alt="" /> 

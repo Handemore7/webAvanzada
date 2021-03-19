@@ -1,5 +1,5 @@
 const baseExtensionsUrl = '/images/';
 
-export const getImageSrcFromFilename = (imgName: string = '') => {
+export const getImgUrl = (imgName: string = '') => {
   return `${baseExtensionsUrl}${imgName}`;
 }

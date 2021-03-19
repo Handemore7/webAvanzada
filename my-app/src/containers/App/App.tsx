@@ -1,9 +1,11 @@
 import { listenerCount } from 'node:events';
 import React from 'react';
+import { BrowserRouter, HashRouter, Route, Link } from 'react-router-dom';
 import { CardItem } from '../../components/CardItem/CardItem';
 import { List } from '../../components/List/List';
 import { MainItem } from '../../components/MainItem/MainItem';
 import { detectMouseMovement } from '../../utils/detectMouseMovement';
+import './App.css';
 
 const initialCards = [
     {
@@ -142,7 +144,6 @@ export const App = () => {
     
     const [lists, setLists] = React.useState(initialLists);
     const [cards, setCards] = React.useState(initialCards);
-    const [antiList, setAntiList] = React.useState(initialCards);
 
     const handleListRemove = (id: number) => {
         const index = cards.findIndex((elem) => {
@@ -173,28 +174,41 @@ export const App = () => {
         console.log(mousePos);
     }
     
-    return (<main >
-        {
-            lists.map(({listName, id}) => {  
-                return <List 
-                id = {id}
-                name = {listName}
-                content = {handleFilterList(id)}
-                handleDeleteItem = {handleListRemove}
-                handleListAdd = {handleListAdd}
-                handleDragItem = {handleDragItem}
-                />
-            }
-        )}
-        <button >Holaaaa</button>
-        <MainItem 
-        id={1} 
-        title="Titulo del item"
-        type="Serie"
-        image="/images/defaultCardImg.png"
-        category="suspenso"
-        dateAdded="aklsjdasd"
-        comments="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam illum, nemo iste maiores commodi veniam dignissimos exercitationem ratione neque praesentium delectus repellendus cumque corporis, quibusdam omnis. Asperiores harum porro assumenda."
-        />
+    return (<main className="appMain">
+
+        <BrowserRouter>
+
+            <Route path="/">
+                {
+                    lists.map(({listName, id}) => {  
+                        <button >Holaaaa</button>
+                        return <List 
+                        id = {id}
+                        name = {listName}
+                        content = {handleFilterList(id)}
+                        handleDeleteItem = {handleListRemove}
+                        handleListAdd = {handleListAdd}
+                        handleDragItem = {handleDragItem}
+                        />
+                    }
+                    )}
+
+            </Route>
+                    
+                
+            <Route path="/:cardID" render={() => <MainItem 
+                contentList = {cards}
+                />} />
+                {/* <MainItem 
+                id={1} 
+                title="Titulo del item"
+                type="Serie"
+                image="/images/defaultCardImg.png"
+                category="suspenso"
+                dateAdded="aklsjdasd"
+                comments="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam illum, nemo iste maiores commodi veniam dignissimos exercitationem ratione neque praesentium delectus repellendus cumque corporis, quibusdam omnis. Asperiores harum porro assumenda."
+                /> */}
+            
+        </BrowserRouter>
     </main>);
 }
