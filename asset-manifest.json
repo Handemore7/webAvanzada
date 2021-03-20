@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/webAvanzada/static/css/main.61ee089a.chunk.css",
-    "main.js": "/webAvanzada/static/js/main.89696225.chunk.js",
-    "main.js.map": "/webAvanzada/static/js/main.89696225.chunk.js.map",
+    "main.js": "/webAvanzada/static/js/main.e5f722e6.chunk.js",
+    "main.js.map": "/webAvanzada/static/js/main.e5f722e6.chunk.js.map",
     "runtime-main.js": "/webAvanzada/static/js/runtime-main.8a39c951.js",
     "runtime-main.js.map": "/webAvanzada/static/js/runtime-main.8a39c951.js.map",
-    "static/js/2.93771cb1.chunk.js": "/webAvanzada/static/js/2.93771cb1.chunk.js",
-    "static/js/2.93771cb1.chunk.js.map": "/webAvanzada/static/js/2.93771cb1.chunk.js.map",
+    "static/js/2.62c8a95d.chunk.js": "/webAvanzada/static/js/2.62c8a95d.chunk.js",
+    "static/js/2.62c8a95d.chunk.js.map": "/webAvanzada/static/js/2.62c8a95d.chunk.js.map",
     "index.html": "/webAvanzada/index.html",
     "static/css/main.61ee089a.chunk.css.map": "/webAvanzada/static/css/main.61ee089a.chunk.css.map",
-    "static/js/2.93771cb1.chunk.js.LICENSE.txt": "/webAvanzada/static/js/2.93771cb1.chunk.js.LICENSE.txt"
+    "static/js/2.62c8a95d.chunk.js.LICENSE.txt": "/webAvanzada/static/js/2.62c8a95d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.8a39c951.js",
-    "static/js/2.93771cb1.chunk.js",
+    "static/js/2.62c8a95d.chunk.js",
     "static/css/main.61ee089a.chunk.css",
-    "static/js/main.89696225.chunk.js"
+    "static/js/main.e5f722e6.chunk.js"
   ]
 }
