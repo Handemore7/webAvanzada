@@ -2,6 +2,7 @@ import * as React from 'react';
 import { CardItem, CardItemProps } from '../../components/CardItem/CardItem';
 import { detectMouseMovement } from '../../utils/detectMouseMovement';
 import { BrowserRouter, HashRouter, Route, Link } from 'react-router-dom';
+import { Redirect, useHistory, useParams } from 'react-router';
 import './List.css';
 
 interface ListProps {
@@ -17,6 +18,7 @@ var lastItem: number|undefined ; //No debe almacenarlo para siempre
 var listID2: number;
 export const List:  React.FC<ListProps> = ({id, name, content, handleDeleteItem, handleListAdd, handleDragItem}) => {
 
+    const history = useHistory();
     const prevent = (event: any) =>{
         event.preventDefault();
     }
@@ -40,6 +42,7 @@ export const List:  React.FC<ListProps> = ({id, name, content, handleDeleteItem,
 
             const interClickItem = () =>{
                 //console.log('Me estan clickeandooo!!!');
+                history.push(`${elem.id}`);
             }
 
             const interListAdd = () =>{
@@ -60,7 +63,7 @@ export const List:  React.FC<ListProps> = ({id, name, content, handleDeleteItem,
             }
             
             
-            return <Link to={`${elem.id}`}><CardItem 
+            return <CardItem 
             id = {elem.id}
             title = {elem.title}
             type = {elem.type}
@@ -74,7 +77,7 @@ export const List:  React.FC<ListProps> = ({id, name, content, handleDeleteItem,
             onDragItem = {interDragItem}
             onAddItem = {interListAdd}
             onClickItem = {interClickItem}
-            />  </Link> 
+            />   
         })}
     </div>);
 }

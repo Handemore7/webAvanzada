@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useParams } from 'react-router';
+import { Redirect, useHistory, useParams } from 'react-router';
 import { getImgUrl } from '../../utils/getImgUrl';
 import { CardItemProps } from '../CardItem/CardItem';
 import { BrowserRouter, HashRouter, Route, Link } from 'react-router-dom';
@@ -12,15 +12,26 @@ interface MainItemProps {
 export const MainItem :  React.FC<MainItemProps> =({ contentList}) => {
     
     const {cardID} = useParams<{cardID: string}>();
-    
+    const history = useHistory();
+
     const cardElem = contentList.find((elem: any) => {
-        return elem.id == cardID;
+        return elem.id === parseInt(cardID);
     });
+    
+    
+    const interDropback = () =>{
+        history.push("/");
+    }
+    
+    if (cardElem == undefined) {
+        return <Redirect to="/"/>
+    }
     
     const img = getImgUrl(cardElem.image);
 
     return(<div className={`MainItem`}>
-                <Link to="/"><div className="MainItem--background"></div></Link>
+            {/* No usar la etiqueta link, usar un onClick a el useHistory y seguramente como goBack */}
+                <div onClick={interDropback} className="MainItem--background"></div>
                 <div className="MainItem--content">
                     <img src={img} alt="" />
                     <div className={`content`}>

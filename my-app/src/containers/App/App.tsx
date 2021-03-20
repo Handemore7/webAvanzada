@@ -176,7 +176,7 @@ export const App = () => {
     
     return (<main className="appMain">
 
-        <BrowserRouter>
+        <HashRouter basename={process.env.PUBLIC_URL}>
 
             <Route path="/">
                 {
@@ -199,16 +199,7 @@ export const App = () => {
             <Route path="/:cardID" render={() => <MainItem 
                 contentList = {cards}
                 />} />
-                {/* <MainItem 
-                id={1} 
-                title="Titulo del item"
-                type="Serie"
-                image="/images/defaultCardImg.png"
-                category="suspenso"
-                dateAdded="aklsjdasd"
-                comments="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam illum, nemo iste maiores commodi veniam dignissimos exercitationem ratione neque praesentium delectus repellendus cumque corporis, quibusdam omnis. Asperiores harum porro assumenda."
-                /> */}
             
-        </BrowserRouter>
+        </HashRouter>
     </main>);
 }
