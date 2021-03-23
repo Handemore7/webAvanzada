@@ -5,7 +5,7 @@ import { BrowserRouter, HashRouter, Route, Link } from 'react-router-dom';
 import { Redirect, useHistory, useParams } from 'react-router';
 import './List.css';
 
-interface ListProps {
+export interface ListProps {
     id: number;
     name: string;
     content: CardItemProps[];
@@ -18,6 +18,8 @@ var lastItem: number|undefined ; //No debe almacenarlo para siempre
 var listID2: number;
 export const List:  React.FC<ListProps> = ({id, name, content, handleDeleteItem, handleListAdd, handleDragItem}) => {
 
+    console.log(content);
+    
     const history = useHistory();
     const prevent = (event: any) =>{
         event.preventDefault();
@@ -26,7 +28,7 @@ export const List:  React.FC<ListProps> = ({id, name, content, handleDeleteItem,
         event.preventDefault();
         listID2= id;
     }
-    return (<div className={`List`} onDragOver={prevent} onDragEnter={prevent} onDrop={preventOnDrop}> 
+    return (<div className="List" onDragOver={prevent} onDragEnter={prevent} onDrop={preventOnDrop}> 
         <div className={`List__title`}>
             <p>{name}</p> <span>{content.length}</span>
         </div>
@@ -42,24 +44,14 @@ export const List:  React.FC<ListProps> = ({id, name, content, handleDeleteItem,
 
             const interClickItem = () =>{
                 //console.log('Me estan clickeandooo!!!');
-                history.push(`${elem.id}`);
+                history.push(`card/${elem.id}`);
             }
 
             const interListAdd = () =>{
                 //console.log('El drag termina');
                 handleDeleteItem(elem.id);
-                        lastItem = elem.id;
-
-                console.log('list: '+listID2+ '  cardId:'+ lastItem);
-                
+                lastItem = elem.id;
                 handleListAdd(listID2, lastItem);
-                /* if (listID2!=undefined) {
-                    if (lastItem!=undefined) {
-                        lastItem=undefined;
-                    }
-                }else{
-                  console.log('undefineDDDDDDD'); 
-                } */
             }
             
             

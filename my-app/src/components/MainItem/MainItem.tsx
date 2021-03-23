@@ -19,13 +19,13 @@ export const MainItem :  React.FC<MainItemProps> =({ contentList}) => {
     });
     
     
-    const interDropback = () =>{
+    const interDropback = () =>{    
         history.push("/");
     }
     
     if (cardElem == undefined) {
         return <Redirect to="/"/>
-    }
+    } 
     
     const img = getImgUrl(cardElem.image);
 

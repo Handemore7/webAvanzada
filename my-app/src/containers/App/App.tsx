@@ -1,10 +1,12 @@
 import { listenerCount } from 'node:events';
 import React from 'react';
+import { Redirect, useHistory, useParams } from 'react-router';
 import { BrowserRouter, HashRouter, Route, Link } from 'react-router-dom';
 import { CardItem } from '../../components/CardItem/CardItem';
 import { List } from '../../components/List/List';
 import { MainItem } from '../../components/MainItem/MainItem';
 import { detectMouseMovement } from '../../utils/detectMouseMovement';
+import { CreateElement } from '../CreateElement/CreateElement';
 import './App.css';
 
 const initialCards = [
@@ -128,19 +130,10 @@ const initialLists = [
     },
     ];
 
-const handleFilterList = (list: any) => { //Usar la funcion filter
-    var arrayList: any = [];
-    initialCards.forEach(elem => {
-            if(elem.list === list){
-                //arrayList.unshift(elem);
-                arrayList.push(elem);                
-            }
-        });
-        return (arrayList);
-}
-
-
 export const App = () => {
+
+    const history = useHistory();
+    console.log(history);
     
     const [lists, setLists] = React.useState(initialLists);
     const [cards, setCards] = React.useState(initialCards);
@@ -152,19 +145,15 @@ export const App = () => {
         const copy = cards.slice();
         copy[index].list *= -1;
         setCards(copy);
-        } 
+    } 
 
     const handleListAdd = (listId: number, cardId: number) => {
         const index = cards.findIndex((elem) => {
             return elem.id === cardId;
         });
-
-        //const item = cards.find((elem) => elem.id === cardId);
-
         const copy = cards.slice();
         copy[index].list = listId;
         setCards(copy);
-        //console.log('listId: '+listId + '. cardId: ' + cardId);
     }
 
     var mousePos: any;
@@ -173,15 +162,48 @@ export const App = () => {
         mousePos = detectMouseMovement();
         console.log(mousePos);
     }
+
+    const handleCreateCard = (title1:any, type1:any, category1:any, list1:any) =>{
+        const copy = cards.slice();
+        var newObj = {
+            id: copy.length,
+            title: title1,
+            type: type1,
+            list: parseInt(list1),
+            rating: 5,
+            image: 'defaultCardImg.png',
+            category: category1,
+            dateAdded: '50000000000',
+            dateCompleted: '50000005000',
+            comments: 'hola',
+        };
+        copy.push(newObj);
+        setCards(copy);
+    }
+
+    const interDropback = () =>{
+        console.log(history);
+        history.push("/5");
+    }
+
+    const handleFilterList = (list: any) => { //Usar la funcion filter
+        var arrayList: any = [];
+        cards.forEach(elem => {
+                if(elem.list === list){
+                    //arrayList.unshift(elem);
+                    arrayList.push(elem);                
+                }
+            });
+            return (arrayList);
+    }
     
-    return (<main className="appMain">
+    return (<main className="AppMain">
 
         <HashRouter basename={process.env.PUBLIC_URL}>
 
             <Route path="/">
                 {
                     lists.map(({listName, id}) => {  
-                        <button >Holaaaa</button>
                         return <List 
                         id = {id}
                         name = {listName}
@@ -192,14 +214,21 @@ export const App = () => {
                         />
                     }
                     )}
-
-            </Route>
-                    
+            </Route>       
                 
-            <Route path="/:cardID" render={() => <MainItem 
+            <Route path="/card/:cardID" render={() => <MainItem 
                 contentList = {cards}
                 />} />
-            
+
+            <Route path="/createElement" render={() => <CreateElement 
+                handleCreateCard = {handleCreateCard}
+                listContent = {lists}
+                />} />
+
+            <Link to="/createElement"><button className="buttonAddCard">
+                +            
+            </button></Link>
+
         </HashRouter>
     </main>);
 }

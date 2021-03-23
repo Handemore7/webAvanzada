@@ -1,0 +1,22 @@
+.NavButton{
+    display: inline-block;
+    position: absolute;
+    width: 20vh;
+    height: 7vh;
+    font-size: 20px;
+}
+
+.NavButton--back{
+    bottom: 2vh;
+    left: 2vh;
+}
+
+.NavButton--next{
+    bottom: 2vh;
+    right: 2vh;
+}
+
+.inputInfoCard{
+    display: block;
+    margin: 10px;
+}

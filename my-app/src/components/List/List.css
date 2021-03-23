@@ -1,9 +1,9 @@
 .List {
-    overflow:auto;
+    overflow: scroll;
     user-select: none;
     display: inline-table;
     width: 20%;
-    border: 2px solid black;
+    border: 1px solid black;
     height: 100vh;
 }
 .List--selected{

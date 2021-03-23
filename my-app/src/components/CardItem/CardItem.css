@@ -1,11 +1,10 @@
 .CardItem {
     background: #FE7979;
     width: 100%;
+    max-width: 100%;
     user-select: none;
-    
+    border: 1px solid black;
 }
-
-
 
 .CardItem h1 {
     margin: 0px;
