@@ -133,7 +133,7 @@ const initialLists = [
 export const App = () => {
 
     const history = useHistory();
-    console.log(history);
+    //console.log(history);
     
     const [lists, setLists] = React.useState(initialLists);
     const [cards, setCards] = React.useState(initialCards);
@@ -148,6 +148,8 @@ export const App = () => {
     } 
 
     const handleListAdd = (listId: number, cardId: number) => {
+        console.log(listId, cardId);
+        
         const index = cards.findIndex((elem) => {
             return elem.id === cardId;
         });
@@ -163,7 +165,9 @@ export const App = () => {
         console.log(mousePos);
     }
 
-    const handleCreateCard = (title1:any, type1:any, category1:any, list1:any) =>{
+    const handleCreateCard = (title1: string, type1: string, category1: string, list1:any, comments1: string) =>{
+        console.log(title1, type1, category1, list1, comments1);
+        
         const copy = cards.slice();
         var newObj = {
             id: copy.length,
@@ -175,7 +179,7 @@ export const App = () => {
             category: category1,
             dateAdded: '50000000000',
             dateCompleted: '50000005000',
-            comments: 'hola',
+            comments: comments1,
         };
         copy.push(newObj);
         setCards(copy);

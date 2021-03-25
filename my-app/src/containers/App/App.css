@@ -2,14 +2,13 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-   
 
-
-body{
+body, html{
     margin: 0px;
 }
 
 .AppMain{
+    max-height: 100vh;
 }
 
 .buttonAddCard{
