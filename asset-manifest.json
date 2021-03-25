@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/webAvanzada/static/css/main.3571764f.chunk.css",
-    "main.js": "/webAvanzada/static/js/main.f02050ab.chunk.js",
-    "main.js.map": "/webAvanzada/static/js/main.f02050ab.chunk.js.map",
+    "main.css": "/webAvanzada/static/css/main.138d976c.chunk.css",
+    "main.js": "/webAvanzada/static/js/main.7eccd4d7.chunk.js",
+    "main.js.map": "/webAvanzada/static/js/main.7eccd4d7.chunk.js.map",
     "runtime-main.js": "/webAvanzada/static/js/runtime-main.8a39c951.js",
     "runtime-main.js.map": "/webAvanzada/static/js/runtime-main.8a39c951.js.map",
-    "static/js/2.30f1226e.chunk.js": "/webAvanzada/static/js/2.30f1226e.chunk.js",
-    "static/js/2.30f1226e.chunk.js.map": "/webAvanzada/static/js/2.30f1226e.chunk.js.map",
+    "static/js/2.3037d360.chunk.js": "/webAvanzada/static/js/2.3037d360.chunk.js",
+    "static/js/2.3037d360.chunk.js.map": "/webAvanzada/static/js/2.3037d360.chunk.js.map",
     "index.html": "/webAvanzada/index.html",
-    "static/css/main.3571764f.chunk.css.map": "/webAvanzada/static/css/main.3571764f.chunk.css.map",
-    "static/js/2.30f1226e.chunk.js.LICENSE.txt": "/webAvanzada/static/js/2.30f1226e.chunk.js.LICENSE.txt"
+    "static/css/main.138d976c.chunk.css.map": "/webAvanzada/static/css/main.138d976c.chunk.css.map",
+    "static/js/2.3037d360.chunk.js.LICENSE.txt": "/webAvanzada/static/js/2.3037d360.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.8a39c951.js",
-    "static/js/2.30f1226e.chunk.js",
-    "static/css/main.3571764f.chunk.css",
-    "static/js/main.f02050ab.chunk.js"
+    "static/js/2.3037d360.chunk.js",
+    "static/css/main.138d976c.chunk.css",
+    "static/js/main.7eccd4d7.chunk.js"
   ]
 }
