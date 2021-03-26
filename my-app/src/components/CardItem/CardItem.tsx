@@ -13,7 +13,7 @@ export interface CardItemProps {
     dateCompleted?: string;
     comments?: string;
     onDeleteItem: () => void;
-    onDragItem: () => void;
+    onDragItem: () => void; 
     onAddItem: () => void;
     onClickItem: () => void;
 }

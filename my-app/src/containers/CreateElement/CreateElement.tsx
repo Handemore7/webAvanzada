@@ -21,14 +21,23 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
 
     const [formStep, setFormStep] = React.useState(1);
 
+    const [ infoCard, setInfoCard ] = React.useState({
+        title: '',
+        type: '',
+        categories: '',
+        list: 2,
+        image: '',
+    });
+
+
     const interDropback = () =>{    
         history.push("/");
     }
 
 
-    const interCreateCard = (title2:any, type2:any, categories2:any, list2:any, comments2:string) => {
-        console.log('interCreateadd'+title2, type2, categories2, list2);
-        handleCreateCard(title2, type2, categories2, list2, comments2);
+    const interCreateCard = (objCard: any) => {
+        console.log('interCreateadd'+objCard);
+        handleCreateCard(objCard.title, objCard.type, objCard.img, objCard.list, objCard.comments);
     }
 
     const interSetCardStep1= (titleReceived: any, typeReceived: any)=>{
@@ -49,37 +58,29 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
     }
 
     const handleChangeFormStep= (next: boolean) =>{        
-        console.log(title, type);
-        
-            if (formStep == 3) {
-                console.log('crear elemento lets gooooo'+title+type);
-                interCreateCard(title,type,"asd",2,"comments");
-                history.push("/")
-                console.log(title, type);
-                
-            }else{
                     if (next) {
                         var newFormStep = formStep + 1;
                         setFormStep(newFormStep);
+                        console.log(newFormStep);
                         
+                        if (newFormStep == 4) {
+                            console.log('crear elemento lets gooooo'+title+type);
+                            interCreateCard(infoCard);
+                            history.push("/")
+                        }
                     }else{
                         if (formStep > 1) {
                             var newFormStep = formStep - 1;
                             setFormStep(newFormStep);
-                           
+                            console.log(newFormStep);
                         }
                     }
-                }
+                
     }
 
-    const nextClicked = (event:any) =>{
+    const nextClicked = () =>{
         console.log('cliqueao Next');
         handleChangeFormStep(true);
-        interNextStep(event);
-    }
-
-    const interNextStep = (event:any) =>{
-        console.log(event);
     }
 
     const backClicked = () =>{
@@ -91,18 +92,18 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
         switch (step) {
             case 1: 
                 return <FormItemStep1 
-                        onCreateCard = {interSetCardStep1}
-                        onNextStep = {formStep}
+                        infoCardReceived = {infoCard}
+                        setInfoCard = {setInfoCard}
                         /> 
             case 2:
                 return <FormItemStep2 
-                /* onCreateCard = {interCreateCard}
-                listContent = {listContent} */
-                /> 
+                        infoCardReceived = {infoCard}
+                        setInfoCard = {setInfoCard}
+                        /> 
             case 3:
                 return <FormItemStep3 
-                /* onCreateCard = {interCreateCard}
-                listContent = {listContent} */
+                        infoCardReceived = {infoCard}
+                        setInfoCard = {setInfoCard}
                 /> 
             default:
                 break;
