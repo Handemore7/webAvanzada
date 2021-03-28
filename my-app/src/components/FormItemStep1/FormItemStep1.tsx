@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useHistory } from 'react-router';
+import { ToggleElementItem } from '../ToggleElement/ToggleElement';
 import './FormItemStep1.css';
 
 interface FormItemStep1Props {
@@ -34,14 +35,15 @@ export const FormItemStep1 :  React.FC<FormItemStep1Props> =({infoCardReceived, 
     newObj.type = setTypes(false, event.target.checked, false);
         setInfoCard(newObj);
   }
+
   const [ pelicula, setPelicula ] = React.useState(false);
-  const handlePeliculaChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-      setPelicula(event.target.checked);
-      setOva(false);
-      setAnime(false);
-      newObj.type = setTypes(false, false, event.target.checked);
-        setInfoCard(newObj);
-  }
+  const handlePeliculaChange: React.ChangeEventHandler<HTMLInputElement> = (value: any) => {
+    setPelicula(value);
+    setOva(false);
+    setAnime(false);
+    newObj.type = setTypes(false, false, value);
+    setInfoCard(newObj);
+}
 
   const setTypes = (ova: any, anime: any, pelicula: any) =>{
     if (ova) {
@@ -64,6 +66,11 @@ export const FormItemStep1 :  React.FC<FormItemStep1Props> =({infoCardReceived, 
                     <label htmlFor="anime">Anime</label>
                     <input checked={pelicula} onChange={handlePeliculaChange} type="checkbox" name="Pelicula" id="pelicula"/> 
                     <label htmlFor="pelicula">Pelicula</label>
+                    <ToggleElementItem 
+                    title="Pelicula" 
+                    state={pelicula}
+                    interValueChange = {handlePeliculaChange}
+                    />
                 </div>
                 <div className="inputInfoCard">Nombre {`${ova ? 'del Ova': anime ? 'del Anime' : 'de la pelicula'}`}<input value={title} onChange={handleTitleChange} type="text"/> </div>
             </div>);

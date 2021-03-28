@@ -42,7 +42,6 @@ const handleImg3Change: React.ChangeEventHandler<HTMLInputElement> = (event) => 
 }
     const imgSrc = getImgUrl('Shingeki.jpg')
     return( <div>
-
                     <input checked={img1} onChange={handleImg1Change} type="checkbox" name="Img1" id="Img1"/>
                     <label htmlFor="Img1"><img src="../Shingeki.jpg" alt=""/> </label>
                     <input checked={img2} onChange={handleImg2Change} type="checkbox" name="Img2" id="Img2"/>

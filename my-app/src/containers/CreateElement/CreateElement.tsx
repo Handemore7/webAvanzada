@@ -104,6 +104,7 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
                 return <FormItemStep3 
                         infoCardReceived = {infoCard}
                         setInfoCard = {setInfoCard}
+                        listContent = {listContent}
                 /> 
             default:
                 break;

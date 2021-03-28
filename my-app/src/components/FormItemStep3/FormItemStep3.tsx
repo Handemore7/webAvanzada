@@ -4,9 +4,10 @@ import './FormItemStep3.css';
 interface FormItemStep3Props {
     infoCardReceived: any;
     setInfoCard: any;
+    listContent: any;
 }
 
-export const FormItemStep3 :  React.FC<FormItemStep3Props> =({infoCardReceived, setInfoCard}) => {
+export const FormItemStep3 :  React.FC<FormItemStep3Props> =({infoCardReceived, setInfoCard, listContent}) => {
 
 const [ categories, setCategories ] = React.useState('');
 const handleCategoriesChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -23,9 +24,15 @@ const handleCommentsChange: React.ChangeEventHandler<HTMLInputElement> = (event)
     setComments(event.target.value);
 }
 
+const [ list1, setList1 ] = React.useState(false);
+
     return( <div>
                 <div className="inputInfoCard">Categorias: <input value={categories} onChange={handleCategoriesChange}type="text"/> </div>
-                <div className="inputInfoCard">Lista: <input value={list} onChange={handleListChange} type="number"/> </div>
+                <div className="inputInfoCard">Lista: 
+                {
+                }
+                
+                    <label htmlFor="List1">List1</label> </div>
                 <div className="inputInfoCard">Comentarios: <input value={comments} onChange={handleCommentsChange} type="text"/> </div>
                 {/* <div className="inputInfoCard">Comentarios<textarea value={comments} placeholder="Comentarios..."></textarea></div> */}
             </div>);
