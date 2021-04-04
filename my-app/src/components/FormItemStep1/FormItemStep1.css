@@ -1,18 +1,6 @@
 .inputInfoCard{
-    display: block;
-    width: 100vh;
-    margin: 10px;
-    
+
 }
-.inputInfoCard label {
-    display: inline-block;
-    width: 15vh;
-    height: 50px;
-    text-align: center;
-    border: 1px solid #ddd;
-    line-height: 50px;
-    cursor: pointer
-  }
 
   .inputInfoCard label:checked {
       background: gray;

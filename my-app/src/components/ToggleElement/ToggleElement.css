@@ -14,17 +14,42 @@
     cursor: pointer
   }
 
-  .toggleElemOption label:checked {
-      background: gray;
-    display: inline-block;
-    width: 15vh;
-    height: 50px;
-    text-align: center;
-    border: 1px solid #ddd;
-    line-height: 50px;
+  .toggleElemOption input[type=checkbox]:checked + .toggleElemOption__label{
+    background-color: gray;
+    border: 5px solid red;
     cursor: pointer
-  }
+}
 
 .toggleElemOption__input{
     display: none;
+}
+
+/* Styles for checkbox with images */
+
+.toggleImgOption{
+  display: flex;
+  width: 100%;
+  margin: 10px;
+  
+}
+.toggleImgOption__label {
+  height: 50px;
+  text-align: center;
+  border: 1px solid #ddd;
+  line-height: 50px;
+  cursor: pointer
+}
+
+.toggleImgOption__label img {
+  width: 25vh;
+}
+
+.toggleImgOption input[type=checkbox]:checked + .toggleImgOption__label{
+  background-color: gray;
+  border: 5px solid red;
+  cursor: pointer
+}
+
+.toggleImgOption__input{
+  display: none;
 }

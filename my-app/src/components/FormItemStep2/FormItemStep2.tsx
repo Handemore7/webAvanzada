@@ -42,25 +42,33 @@ const [ img3, setImg3 ] = React.useState(false);
 const handleImg3Change: React.ChangeEventHandler<HTMLInputElement> = (event) => {
 }
     const imgSrc = getImgUrl('Shingeki.jpg')
-    return( <div>
-                    <ToggleElementItem 
-                    type="checkImg"
-                    title="Img1" 
-                    state={img1}
-                    interValueChange = {handleImg1Change}
+    return( <div className="formStep2">
+                <div className="formStep2__optionsImg">
+                    <div className="formStep2__optionsImg__item">
+                        <ToggleElementItem 
+                        type="checkImg"
+                        title="Img1" 
+                        state={img1}
+                        interValueChange = {handleImg1Change}
+                        />
+                    </div>
+                    <div className="formStep2__optionsImg__item">
+                        <ToggleElementItem
+                        type="checkImg" 
+                        title="Img2" 
+                        state={img2}
+                        interValueChange = {handleImg2Change}
                     />
-                    <ToggleElementItem
-                    type="checkImg" 
-                    title="Img2" 
-                    state={img2}
-                    interValueChange = {handleImg2Change}
-                    />
-                    <ToggleElementItem
-                    type="checkImg" 
-                    title="Img3" 
-                    state={img3}
-                    interValueChange = {handleImg3Change}
-                    />
+                    </div>
+                    <div className="formStep2__optionsImg__item">
+                        <ToggleElementItem
+                        type="checkImg" 
+                        title="Img3" 
+                        state={img3}
+                        interValueChange = {handleImg3Change}
+                        />
+                    </div>
+                </div>
                 <button >Buscar img</button>
                 {/* <img src={img} width="200" alt=""/> */}
             </div>);

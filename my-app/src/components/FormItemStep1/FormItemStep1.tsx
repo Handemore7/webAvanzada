@@ -45,7 +45,7 @@ export const FormItemStep1 :  React.FC<FormItemStep1Props> =({infoCardReceived, 
     setInfoCard(newObj);
 }
 
-  const setTypes = (ova: any, anime: any, pelicula: any) =>{
+  const setTypes = (ova: boolean, anime: boolean, pelicula: boolean) =>{
     if (ova) {
         return 'ova';
     }
@@ -57,9 +57,9 @@ export const FormItemStep1 :  React.FC<FormItemStep1Props> =({infoCardReceived, 
     }
   }
 
-    return( <div>
+    return( <div className="formStep1">
                 <h1>Formulario?</h1>
-                <div className="inputInfoCard">
+                <div className="formStep1__inputElems">
                     <ToggleElementItem 
                     type="checkbox"
                     title="Pelicula" 
