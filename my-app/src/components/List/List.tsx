@@ -18,8 +18,6 @@ var lastItem: number|undefined ; //No debe almacenarlo para siempre
 var listID2: number;
 export const List:  React.FC<ListProps> = ({id, name, content, handleDeleteItem, handleListAdd, handleDragItem}) => {
 
-    console.log(content);
-    
     const history = useHistory();
     const prevent = (event: any) =>{
         event.preventDefault();
@@ -28,14 +26,14 @@ export const List:  React.FC<ListProps> = ({id, name, content, handleDeleteItem,
         event.preventDefault();
         listID2= id;
     }
-    return (<div className="List" onDragOver={prevent} onDragEnter={prevent} onDrop={preventOnDrop}> 
+    return (<div className={`List List${id}`} onDragOver={prevent} onDragEnter={prevent} onDrop={preventOnDrop}> 
         <div className={`List__title`}>
             <p>{name}</p> <span>{content.length}</span>
         </div>
+        <div className="List__content">
         {content.map((elem: any) => {
             const interDeleteItem = () =>{
                 console.log('Elimine el item');
-                //console.log(elem.list);
             }
 
             const interDragItem = () =>{
@@ -53,8 +51,7 @@ export const List:  React.FC<ListProps> = ({id, name, content, handleDeleteItem,
                 lastItem = elem.id;
                 handleListAdd(listID2, lastItem);
             }
-            
-            
+             
             return <CardItem 
             id = {elem.id}
             title = {elem.title}
@@ -71,5 +68,6 @@ export const List:  React.FC<ListProps> = ({id, name, content, handleDeleteItem,
             onClickItem = {interClickItem}
             />   
         })}
+        </div>
     </div>);
 }

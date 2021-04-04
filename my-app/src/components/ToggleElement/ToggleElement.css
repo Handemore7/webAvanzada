@@ -1,0 +1,30 @@
+.toggleElemOption{
+    display: block;
+    width: 100vh;
+    margin: 10px;
+    
+}
+.toggleElemOption__label {
+    display: inline-block;
+    width: 15vh;
+    height: 50px;
+    text-align: center;
+    border: 1px solid #ddd;
+    line-height: 50px;
+    cursor: pointer
+  }
+
+  .toggleElemOption label:checked {
+      background: gray;
+    display: inline-block;
+    width: 15vh;
+    height: 50px;
+    text-align: center;
+    border: 1px solid #ddd;
+    line-height: 50px;
+    cursor: pointer
+  }
+
+.toggleElemOption__input{
+    display: none;
+}

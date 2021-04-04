@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { getImgUrl } from '../../utils/getImgUrl';
+import { ToggleElementItem } from '../ToggleElement/ToggleElement';
 import './FormItemStep2.css';
 
 interface FormItemStep2Props {
@@ -42,12 +43,24 @@ const handleImg3Change: React.ChangeEventHandler<HTMLInputElement> = (event) => 
 }
     const imgSrc = getImgUrl('Shingeki.jpg')
     return( <div>
-                    <input checked={img1} onChange={handleImg1Change} type="checkbox" name="Img1" id="Img1"/>
-                    <label htmlFor="Img1"><img src="../Shingeki.jpg" alt=""/> </label>
-                    <input checked={img2} onChange={handleImg2Change} type="checkbox" name="Img2" id="Img2"/>
-                    <label htmlFor="Img2">Img2</label>
-                    <input checked={img3} onChange={handleImg3Change} type="checkbox" name="Img3" id="Img3"/> 
-                    <label htmlFor="Img3">Img3</label>
+                    <ToggleElementItem 
+                    type="checkImg"
+                    title="Img1" 
+                    state={img1}
+                    interValueChange = {handleImg1Change}
+                    />
+                    <ToggleElementItem
+                    type="checkImg" 
+                    title="Img2" 
+                    state={img2}
+                    interValueChange = {handleImg2Change}
+                    />
+                    <ToggleElementItem
+                    type="checkImg" 
+                    title="Img3" 
+                    state={img3}
+                    interValueChange = {handleImg3Change}
+                    />
                 <button >Buscar img</button>
                 {/* <img src={img} width="200" alt=""/> */}
             </div>);

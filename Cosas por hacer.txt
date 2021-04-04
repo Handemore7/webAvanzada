@@ -1,0 +1,5 @@
+Organizar los estilos de las imagenes en FormItemStep2
+Mirar como hacer los estados checked de los ToggleElementItem
+Hacer que la barra de categorias se mueva sin mover el contenido de arriba
+Terminar lo de crear items
+La otra pantalla de visualización

@@ -29,6 +29,10 @@
     z-index: 10;
 }
 
+.MainItem--content--info p {
+    font-size: .9rem;
+}
+
 
 .MainItem img{
     display: inline;

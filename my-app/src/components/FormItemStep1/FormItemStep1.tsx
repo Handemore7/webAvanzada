@@ -20,19 +20,19 @@ export const FormItemStep1 :  React.FC<FormItemStep1Props> =({infoCardReceived, 
   }
 
   const [ ova, setOva ] = React.useState(false);
-  const handleOvaChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {    
-      setOva(event.target.checked);
+  const handleOvaChange: React.ChangeEventHandler<HTMLInputElement> = (value: any) => {    
+      setOva(value);
       setPelicula(false);
       setAnime(false);
-      newObj.type = setTypes(event.target.checked, false, false);
+      newObj.type = setTypes(value, false, false);
         setInfoCard(newObj);
   }
   const [ anime, setAnime ] = React.useState(false);
-  const handleAnimeChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-    setAnime(event.target.checked);
+  const handleAnimeChange: React.ChangeEventHandler<HTMLInputElement> = (value: any) => {    
+    setAnime(value);
     setPelicula(false);
     setOva(false); 
-    newObj.type = setTypes(false, event.target.checked, false);
+    newObj.type = setTypes(false, value, false);
         setInfoCard(newObj);
   }
 
@@ -60,16 +60,23 @@ export const FormItemStep1 :  React.FC<FormItemStep1Props> =({infoCardReceived, 
     return( <div>
                 <h1>Formulario?</h1>
                 <div className="inputInfoCard">
-                    <input checked={ova} onChange={handleOvaChange} type="checkbox" name="OVA" id="ova"/>
-                    <label htmlFor="ova">OVA</label>
-                    <input checked={anime} onChange={handleAnimeChange} type="checkbox" name="Anime" id="anime"/>
-                    <label htmlFor="anime">Anime</label>
-                    <input checked={pelicula} onChange={handlePeliculaChange} type="checkbox" name="Pelicula" id="pelicula"/> 
-                    <label htmlFor="pelicula">Pelicula</label>
                     <ToggleElementItem 
+                    type="checkbox"
                     title="Pelicula" 
                     state={pelicula}
                     interValueChange = {handlePeliculaChange}
+                    />
+                    <ToggleElementItem
+                    type="checkbox" 
+                    title="Anime" 
+                    state={anime}
+                    interValueChange = {handleAnimeChange}
+                    />
+                    <ToggleElementItem
+                    type="checkbox" 
+                    title="Ova" 
+                    state={ova}
+                    interValueChange = {handleOvaChange}
                     />
                 </div>
                 <div className="inputInfoCard">Nombre {`${ova ? 'del Ova': anime ? 'del Anime' : 'de la pelicula'}`}<input value={title} onChange={handleTitleChange} type="text"/> </div>

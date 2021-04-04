@@ -1,9 +1,11 @@
 .List {
-    user-select: none;
     display: inline-table;
-    width: 20%;
+    user-select: none;
     border: 1px solid black;
+    width: 20%;
     height: 100vh;
+    align-items: center;
+    justify-content: center;
 }
 .List--selected{
     background: #2B343B;
@@ -22,3 +24,21 @@
     padding: 1px 5px;
     border: 2px solid #47545F;
 }
+
+.List__content {
+    display: grid;
+    place-items: center;
+
+}   
+/* 
+.List1, .List5{
+    width: 15%;
+}
+
+.List2, .List4 {
+    width: 20%;
+}
+
+.List3 {
+    width: 30%;
+} */

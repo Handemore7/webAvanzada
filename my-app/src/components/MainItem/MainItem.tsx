@@ -30,13 +30,13 @@ export const MainItem :  React.FC<MainItemProps> =({ contentList}) => {
     const img = getImgUrl(cardElem.image);
 
     return(<div className={`MainItem`}>
-            {/* No usar la etiqueta link, usar un onClick a el useHistory y seguramente como goBack */}
                 <div onClick={interDropback} className="MainItem--background"></div>
                 <div className="MainItem--content">
                     <img src={img} alt="" />
-                    <div className={`content`}>
+                    <div className={`MainItem--content--info`}>
                         <h1>{cardElem.title}</h1>
-                        <h2>id: {cardID}</h2>
+                        <h2>tipo: {cardElem.type}</h2>
+                        <h3>id: {cardID}</h3>
                         <p>{cardElem.comments}</p>
                     </div>
                 </div>
