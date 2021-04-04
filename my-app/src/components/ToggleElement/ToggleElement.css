@@ -28,12 +28,10 @@
 
 .toggleImgOption{
   display: flex;
-  width: 100%;
   margin: 10px;
-  
 }
+
 .toggleImgOption__label {
-  height: 50px;
   text-align: center;
   border: 1px solid #ddd;
   line-height: 50px;
@@ -47,7 +45,7 @@
 .toggleImgOption input[type=checkbox]:checked + .toggleImgOption__label{
   background-color: gray;
   border: 5px solid red;
-  cursor: pointer
+  cursor: pointer;
 }
 
 .toggleImgOption__input{

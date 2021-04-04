@@ -26,9 +26,9 @@ export const ToggleElementItem:  React.FC<ToggleElementItemProps> = ({title, sta
         case "checkImg":
             return (<div className="toggleImgOption">
                         <input className="toggleImgOption__input" checked={state} onChange={onValueChange} type="checkbox" name={title} id={title}/> 
-                        <label className="toggleImgOption__label" htmlFor={title}><img src={getImgUrl(img)} alt=""/></label>
+                        <label className="toggleImgOption__label" htmlFor={title}><img className="imgCheck" src={getImgUrl(img)} alt=""/></label>
                     </div>);
     }
-
+{/* <img className="imgCheck" src={getImgUrl(img)} alt=""/> */}
     return <div>Algo salió mal e.e</div>;
 }

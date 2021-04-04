@@ -33,13 +33,22 @@ const handleImgChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
 }
 
 const [ img1, setImg1 ] = React.useState(false);
-const handleImg1Change: React.ChangeEventHandler<HTMLInputElement> = (event) => {    
+const handleImg1Change: React.ChangeEventHandler<HTMLInputElement> = (value: any) => { 
+    setImg1(value);   
+    setImg2(false);
+    setImg3(false);
 }
 const [ img2, setImg2 ] = React.useState(false);
-const handleImg2Change: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+const handleImg2Change: React.ChangeEventHandler<HTMLInputElement> = (value: any) => {
+    setImg1(false);   
+    setImg2(value);
+    setImg3(false); 
 }
 const [ img3, setImg3 ] = React.useState(false);
-const handleImg3Change: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+const handleImg3Change: React.ChangeEventHandler<HTMLInputElement> = (value: any) => {
+    setImg1(false);   
+    setImg2(false);
+    setImg3(value);
 }
     const imgSrc = getImgUrl('Shingeki.jpg')
     return( <div className="formStep2">

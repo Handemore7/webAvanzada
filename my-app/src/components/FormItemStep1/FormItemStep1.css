@@ -1,18 +1,6 @@
 .inputInfoCard{
 
 }
-
-  .inputInfoCard label:checked {
-      background: gray;
-    display: inline-block;
-    width: 15vh;
-    height: 50px;
-    text-align: center;
-    border: 1px solid #ddd;
-    line-height: 50px;
-    cursor: pointer
-  }
-
 .inputInfoCard #ova, #anime, #pelicula {
     display: none;
 }
