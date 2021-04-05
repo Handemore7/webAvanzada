@@ -21,28 +21,31 @@ export const FormItemStep1 :  React.FC<FormItemStep1Props> =({infoCardReceived, 
 
   const [ ova, setOva ] = React.useState(false);
   const handleOvaChange: React.ChangeEventHandler<HTMLInputElement> = (value: any) => {    
-      setOva(value);
-      setPelicula(false);
-      setAnime(false);
-      newObj.type = setTypes(value, false, false);
-        setInfoCard(newObj);
+    setStatesFalse();
+    setOva(value);
+    newObj.type = setTypes(value, false, false);
+    setInfoCard(newObj);
   }
   const [ anime, setAnime ] = React.useState(false);
   const handleAnimeChange: React.ChangeEventHandler<HTMLInputElement> = (value: any) => {    
-    setAnime(value);
-    setPelicula(false);
-    setOva(false); 
+    setStatesFalse();
+    setAnime(value); 
     newObj.type = setTypes(false, value, false);
-        setInfoCard(newObj);
+    setInfoCard(newObj);
   }
 
   const [ pelicula, setPelicula ] = React.useState(false);
   const handlePeliculaChange: React.ChangeEventHandler<HTMLInputElement> = (value: any) => {
+    setStatesFalse();
     setPelicula(value);
-    setOva(false);
-    setAnime(false);
     newObj.type = setTypes(false, false, value);
     setInfoCard(newObj);
+}
+
+const setStatesFalse = () => {
+  setPelicula(false);
+  setAnime(false);
+  setOva(false);
 }
 
   const setTypes = (ova: boolean, anime: boolean, pelicula: boolean) =>{
