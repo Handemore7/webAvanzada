@@ -13,8 +13,6 @@ export const ToggleElementItem:  React.FC<ToggleElementItemProps> = ({title, sta
     const onValueChange = (event: any)=>{
         interValueChange(event.target.checked);
     }
-
-    var img = "Shingeki.jpg"
     
     switch (type) {
         case "checkbox":
@@ -26,7 +24,7 @@ export const ToggleElementItem:  React.FC<ToggleElementItemProps> = ({title, sta
         case "checkImg":
             return (<div className="toggleImgOption">
                         <input className="toggleImgOption__input" checked={state} onChange={onValueChange} type="checkbox" name={title} id={title}/> 
-                        <label className="toggleImgOption__label" htmlFor={title}><img className="imgCheck" src={getImgUrl(img)} alt=""/></label>
+                        <label className="toggleImgOption__label" htmlFor={title}><img className="imgCheck" src={getImgUrl('Listeners.jpg')} alt=""/></label>
                     </div>);
     }
 {/* <img className="imgCheck" src={getImgUrl(img)} alt=""/> */}

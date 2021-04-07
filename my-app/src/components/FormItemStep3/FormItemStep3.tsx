@@ -10,36 +10,49 @@ interface FormItemStep3Props {
 
 export const FormItemStep3 :  React.FC<FormItemStep3Props> =({infoCardReceived, setInfoCard, listContent}) => {
 
+    var newObj = infoCardReceived;
+
 const [ categories, setCategories ] = React.useState('');
 const handleCategoriesChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     setCategories(event.target.value);
+    newObj.category = event.target.value;
+    setInfoCard(newObj);
 }
-  
 
 const [ list1, setList1 ] = React.useState(false);
 const handleList1Change: React.ChangeEventHandler<HTMLInputElement> = (value: any) => {
     setAllStatesFalse();
     setList1(value);
+    newObj.list = 1;
+    setInfoCard(newObj);
 }
 const [ list2, setList2 ] = React.useState(false);
 const handleList2Change: React.ChangeEventHandler<HTMLInputElement> = (value: any) => {
     setAllStatesFalse();
     setList2(value);
+    newObj.list = 2;
+    setInfoCard(newObj);
 }
 const [ list3, setList3 ] = React.useState(false);
 const handleList3Change: React.ChangeEventHandler<HTMLInputElement> = (value: any) => {
     setAllStatesFalse();
     setList3(value);
+    newObj.list = 3;
+    setInfoCard(newObj);
 }
 const [ list4, setList4 ] = React.useState(false);
 const handleList4Change: React.ChangeEventHandler<HTMLInputElement> = (value: any) => {
     setAllStatesFalse();
     setList4(value);
+    newObj.list = 4;
+    setInfoCard(newObj);
 }
 const [ list5, setList5 ] = React.useState(false);
 const handleList5Change: React.ChangeEventHandler<HTMLInputElement> = (value: any) => {
     setAllStatesFalse();
     setList5(value);
+    newObj.list = 5;
+    setInfoCard(newObj);
 }
 
 const [ comments, setComments ] = React.useState('');

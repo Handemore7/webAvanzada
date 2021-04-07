@@ -6,7 +6,7 @@ import { FormItemStep2 } from '../../components/FormItemStep2/FormItemStep2';
 import { FormItemStep3 } from '../../components/FormItemStep3/FormItemStep3';
 
 interface CreateElementProps {
-    handleCreateCard: (title:any, type:any, categories:any, list:any, comments:string) => void;
+    handleCreateCard: (title:any, type:any, categories:any, list:any, comments:string, img:string) => void;
     listContent: any;
 }
 var title:any;
@@ -24,9 +24,10 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
     const [ infoCard, setInfoCard ] = React.useState({
         title: '',
         type: '',
-        categories: '',
+        category: '',
         list: 2,
-        image: '',
+        comments: '',
+        image: 'empty',
     });
 
 
@@ -36,8 +37,7 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
 
 
     const interCreateCard = (objCard: any) => {
-        console.log('interCreateadd'+objCard);
-        handleCreateCard(objCard.title, objCard.type, objCard.img, objCard.list, objCard.comments);
+        handleCreateCard(objCard.title, objCard.type,objCard.category, objCard.list, objCard.comments, objCard.image);
     }
 
     const interSetCardStep1= (titleReceived: any, typeReceived: any)=>{
@@ -64,7 +64,7 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
                         console.log(newFormStep);
                         
                         if (newFormStep == 4) {
-                            console.log('crear elemento lets gooooo'+title+type);
+                            console.log(infoCard);
                             interCreateCard(infoCard);
                             history.push("/")
                         }

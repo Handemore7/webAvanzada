@@ -37,6 +37,7 @@
 .List__title {
     background: #1B1726;
     display: flex;
+    opacity: 100%;
     color: white;
     position: sticky;
     top: 0;
@@ -59,10 +60,12 @@
 /* 
 .List1, .List5{
     width: 15%;
+    opacity: 40%;
 }
 
 .List2, .List4 {
     width: 20%;
+    opacity: 70%;
 }
 
 .List3 {

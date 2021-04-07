@@ -3,6 +3,7 @@
     top: 0px;
     width: 100%;
     margin: 0px auto;
+    color: whitesmoke;
 }
 
 .CreateElement--background{
@@ -16,7 +17,7 @@
 
 .CreateElement--content{
     position: relative;
-    background: chartreuse;
+    background: #12171C;
     opacity: 100%;
     width: 80%;
     height: 80vh;

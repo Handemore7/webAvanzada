@@ -27,6 +27,9 @@ const interOnClickSearchImg = () =>{
 export const FormItemStep2 :  React.FC<FormItemStep2Props> =({infoCardReceived, setInfoCard}) => {
 
     var newObj = infoCardReceived;
+    var imgOption1 = 'Listeners.jpg';
+    var imgOption2 = 'YesterdayWoUtatte.webp';
+    var imgOption3 = 'OdaCinnamonNobunaga.jpg';
 
 const [ img, setImg ] = React.useState(newObj.image);
 const handleImgChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -34,23 +37,32 @@ const handleImgChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
 
 const [ img1, setImg1 ] = React.useState(false);
 const handleImg1Change: React.ChangeEventHandler<HTMLInputElement> = (value: any) => { 
-    setImg1(value);   
-    setImg2(false);
-    setImg3(false);
+    setAllStatesFalse();
+    setImg1(value);  
+    newObj.image = imgOption1;
+    setInfoCard(newObj); 
 }
 const [ img2, setImg2 ] = React.useState(false);
 const handleImg2Change: React.ChangeEventHandler<HTMLInputElement> = (value: any) => {
-    setImg1(false);   
+    setAllStatesFalse();
     setImg2(value);
-    setImg3(false); 
+    newObj.image = imgOption2;
+    setInfoCard(newObj); 
 }
 const [ img3, setImg3 ] = React.useState(false);
 const handleImg3Change: React.ChangeEventHandler<HTMLInputElement> = (value: any) => {
-    setImg1(false);   
-    setImg2(false);
+    setAllStatesFalse();
     setImg3(value);
+    newObj.image = imgOption3;
+    setInfoCard(newObj); 
 }
-    const imgSrc = getImgUrl('Shingeki.jpg')
+
+const setAllStatesFalse = ()=>{
+    setImg1(false);
+    setImg2(false);
+    setImg3(false);
+}
+
     return( <div className="formStep2">
                 <div className="formStep2__optionsImg">
                     <div className="formStep2__optionsImg__item">

@@ -172,20 +172,23 @@ export const App = () => {
         mousePos = detectMouseMovement();
     }
 
-    const handleCreateCard = (title1: string, type1: string, category1: string, list1:any, comments1: string) =>{        
+    const handleCreateCard = (title1: string, type1: string, category1: string, list1:number , comments1: string, img1: string) =>{        
+        console.log(title1, type1, category1, list1, comments1, img1);
+        
         const copy = cards.slice();
         var newObj = {
             id: copy.length,
             title: title1,
             type: type1,
-            list: parseInt(list1),
+            list: list1,
             rating: 5,
-            image: 'defaultCardImg.png',
+            image: img1,
             category: category1,
             dateAdded: '50000000000',
             dateCompleted: '50000005000',
             comments: comments1,
         };
+        copy.push(newObj);
         setCards(copy);
     }
 

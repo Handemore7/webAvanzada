@@ -16,7 +16,7 @@ export const FormItemStep1 :  React.FC<FormItemStep1Props> =({infoCardReceived, 
       setTitle(event.target.value);
       newObj.title = event.target.value;
       newObj.type = setTypes(ova, anime, pelicula);
-        setInfoCard(newObj);
+      setInfoCard(newObj);
   }
 
   const [ ova, setOva ] = React.useState(false);

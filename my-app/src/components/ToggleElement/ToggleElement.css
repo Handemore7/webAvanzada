@@ -1,5 +1,5 @@
 .toggleElemOption{
-    display: block;
+    display: inline;
     width: 100vh;
     margin: 10px;
     
@@ -11,13 +11,13 @@
     text-align: center;
     border: 1px solid #ddd;
     line-height: 50px;
-    cursor: pointer
+    cursor: pointer;
   }
-
+  
   .toggleElemOption input[type=checkbox]:checked + .toggleElemOption__label{
-    background-color: gray;
-    border: 5px solid red;
-    cursor: pointer
+    color: red;
+    border: 2px solid red;
+    cursor: pointer;
 }
 
 .toggleElemOption__input{
