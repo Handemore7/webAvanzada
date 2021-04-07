@@ -8,7 +8,7 @@ body, html{
 }
 
 .AppMain{
-    max-height: 100vh;
+    margin: 0;
 }
 
 .buttonAddCard{

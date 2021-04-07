@@ -1,5 +1,8 @@
 .List {
-    display: inline-table;
+    display: inline-block;
+    overflow-y: scroll;
+    flex-direction: row;
+    position: relative;
     user-select: none;
     border: 1px solid black;
     width: 20%;
@@ -7,14 +10,37 @@
     align-items: center;
     justify-content: center;
 }
+
+::-webkit-scrollbar {
+    width: 0px;
+    height: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 .List--selected{
     background: #2B343B;
 }
 
 .List__title {
     background: #1B1726;
-    display: inline-flex;
+    display: flex;
     color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
     width: 100%;
     justify-content: center;
 }
