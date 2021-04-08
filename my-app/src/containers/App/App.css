@@ -11,15 +11,24 @@ body, html{
     margin: 0;
 }
 
-.buttonAddCard{
+.btn{
     position: absolute;
-    bottom: 2vh;
-    right: 2vh;
     border-radius: 50%;
     font-size: 20px;
     font-weight: 1000;
-    background: red;
     border: none;
     width: 5vh;
     height: 5vh;
+}
+
+.btnAddCard {
+    bottom: 2vh;
+    right: 2vh;
+    background: red;
+}
+
+.btnChangeView {
+    bottom: 10vh;
+    right: 2vh;
+    background: green;
 }

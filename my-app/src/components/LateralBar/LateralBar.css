@@ -1,0 +1,24 @@
+.LateralBar {
+    background: #110E1C;
+    width: 20%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.LateralBar__item:hover {
+    background: #282236;
+}
+
+.LateralBar__item {
+    height: 10vh;
+    text-align: center;
+    display: grid;
+    place-items: center;
+}
+
+.LateralBar__item span {
+    color: white;
+    pointer-events: none;
+}

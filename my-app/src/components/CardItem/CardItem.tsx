@@ -12,10 +12,10 @@ export interface CardItemProps {
     dateAdded: string;
     dateCompleted?: string;
     comments?: string;
-    onDeleteItem: () => void;
-    onDragItem: () => void; 
-    onAddItem: () => void;
-    onClickItem: () => void;
+    onDeleteItem?: () => void;
+    onDragItem?: () => void; 
+    onAddItem?: () => void;
+    onClickItem?: () => void;
 }
 
 export const CardItem:  React.FC<CardItemProps> = ({id, title, type, rating, image, category, dateAdded, dateCompleted, comments, onDeleteItem, onDragItem, onAddItem, onClickItem}) => {  

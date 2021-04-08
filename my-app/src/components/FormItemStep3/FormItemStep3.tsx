@@ -58,6 +58,8 @@ const handleList5Change: React.ChangeEventHandler<HTMLInputElement> = (value: an
 const [ comments, setComments ] = React.useState('');
 const handleCommentsChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     setComments(event.target.value);
+    newObj.comments = event.target.value;
+    setInfoCard(newObj);
 }
 
 const setAllStatesFalse = ()=>{
@@ -67,53 +69,6 @@ const setAllStatesFalse = ()=>{
     setList4(false);
     setList5(false);
 }
-
-/* const handleSetStateInProps = (id: any) =>{
-    switch (id) {
-        case 1:
-            return list1;
-        case 2:
-            return list2;
-        case 3:
-            return list3;
-        case 4:
-            return list4;
-        case 5:
-            return list5;
-    }
-}
-
-const handleSetChangeState = (id: any) =>{
-    switch (id) {
-        case 1:
-            return interhandleList1Change;
-        case 2:
-            return interhandleList2Change;
-        case 3:
-            return interhandleList3Change;
-        case 4:
-            return interhandleList4Change;
-        case 5:
-            return interhandleList5Change;
-    }
-}
-
-const interhandleList1Change = (value:any) =>{
-    handleList1Change(value)
-}
-const interhandleList2Change = (value:any) =>{
-    handleList2Change(value)
-}
-const interhandleList3Change = (value:any) =>{
-    handleList3Change(value)
-}
-const interhandleList4Change = (value:any) =>{
-    handleList4Change(value)
-}
-const interhandleList5Change = (value:any) =>{
-    handleList5Change(value)
-}
- */
     return( <div>
                 <div className="inputInfoCard">Categorias: <input value={categories} onChange={handleCategoriesChange}type="text"/> </div>
                 <div className="inputInfoCard">Lista: 

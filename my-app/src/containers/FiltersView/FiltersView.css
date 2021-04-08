@@ -1,0 +1,13 @@
+.filtersView{
+    background: #1B1726;
+    width: 100%;
+    height: 100vh;
+    position: absolute; 
+    z-index: 20;
+    top: 0;
+}
+
+.filterView__card {
+    position: relative;
+    width: 30vh;
+}

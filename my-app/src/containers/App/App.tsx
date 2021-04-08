@@ -4,7 +4,9 @@ import { HashRouter, Route, Link } from 'react-router-dom';
 import { List } from '../../components/List/List';
 import { MainItem } from '../../components/MainItem/MainItem';
 import { detectMouseMovement } from '../../utils/detectMouseMovement';
+import { InitialListsContext } from '../../utils/InitialListsContext';
 import { CreateElement } from '../CreateElement/CreateElement';
+import { FiltersView } from '../FiltersView/FiltersView';
 import './App.css';
 
 const initialCards = [
@@ -196,7 +198,7 @@ export const App = () => {
         console.log(history);
     }
 
-    const handleFilterList = (list: any) => { //Usar la funcion filter
+    const handleFilterList = (list: number) => {
         var arrayList: any = [];
         cards.forEach(elem => {
                 if(elem.list === list){
@@ -211,34 +213,43 @@ export const App = () => {
 
         <HashRouter basename={process.env.PUBLIC_URL}>
 
-            <Route path="/">
-                {
-                    lists.map(({listName, id}) => {  
-                        return <List 
-                        id = {id}
-                        name = {listName}
-                        content = {handleFilterList(id)}
-                        handleDeleteItem = {handleListRemove}
-                        handleListAdd = {handleListAdd}
-                        handleDragItem = {handleDragItem}
-                        />
-                    }
-                    )}
-            </Route>       
-                
-            <Route path="/card/:cardID" render={() => <MainItem 
-                contentList = {cards}
-                />} />
+            <InitialListsContext.Provider value={{list: lists, listCards: cards, handleFilterList: handleFilterList}}>
 
-            <Route path="/createElement" render={() => <CreateElement 
-                handleCreateCard = {handleCreateCard}
-                listContent = {lists}
-                />} />
+                <Route path="/" >
+                    {
+                        lists.map(({listName, id}) => {  
+                            return <List 
+                            id = {id}
+                            name = {listName}
+                            content = {handleFilterList(id)}
+                            handleDeleteItem = {handleListRemove}
+                            handleListAdd = {handleListAdd}
+                            handleDragItem = {handleDragItem}
+                            />
+                        }
+                        )}
+                </Route>       
+                    
+                <Route path="/card/:cardID" render={() => <MainItem 
+                    contentList = {cards}
+                    />} />
 
-            <Link to="/createElement"><button className="buttonAddCard">
-                +            
-            </button></Link>
+                <Route path="/createElement" render={() => <CreateElement 
+                    handleCreateCard = {handleCreateCard}
+                    listContent = {lists}
+                    />} />
 
+                <Route path="/filters" render={() => <FiltersView 
+                    />} />
+
+                <Link to="/createElement"><button className="btn btnAddCard">
+                    +            
+                </button></Link>
+
+                <Link to="/filters"><button className="btn btnChangeView">
+                    C            
+                </button></Link>
+            </InitialListsContext.Provider>
         </HashRouter>
     </main>);
 }
