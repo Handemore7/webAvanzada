@@ -4,10 +4,19 @@
     height: 100vh;
     position: absolute; 
     z-index: 20;
+    overflow: scroll;
     top: 0;
 }
 
+.filterView__container {
+    width: 80%;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 .filterView__card {
     position: relative;
     width: 30vh;
+    display: inline-flex;  
+    font-size: 12px;
 }

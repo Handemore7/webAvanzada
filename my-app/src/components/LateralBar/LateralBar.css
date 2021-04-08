@@ -1,5 +1,7 @@
 .LateralBar {
     background: #110E1C;
+    position: sticky;
+    top: 0px;
     width: 20%;
     height: 100vh;
     display: flex;
