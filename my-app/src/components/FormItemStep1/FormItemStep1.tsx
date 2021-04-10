@@ -19,14 +19,38 @@ export const FormItemStep1 :  React.FC<FormItemStep1Props> =({infoCardReceived, 
       setInfoCard(newObj);
   }
 
-  const [ ova, setOva ] = React.useState(false);
+  console.log(newObj.type);
+
+  var initialValueOva: any = false;
+  var initialValuePelicula: any = false;
+  var initialValueAnime: any = false;
+
+  const setInitialValue = (type: any) =>{
+    switch (type) {
+      case 'ova':
+        initialValueOva = true;
+        break;
+      case 'anime':
+        initialValueAnime = true;
+        break;
+      case 'pelicula':
+        initialValuePelicula = true;
+        break;
+      default:
+        break;
+    }
+  }
+
+  setInitialValue(newObj.type);
+
+  const [ ova, setOva ] = React.useState(initialValueOva);
   const handleOvaChange: React.ChangeEventHandler<HTMLInputElement> = (value: any) => {    
     setStatesFalse();
     setOva(value);
     newObj.type = setTypes(value, false, false);
     setInfoCard(newObj);
   }
-  const [ anime, setAnime ] = React.useState(false);
+  const [ anime, setAnime ] = React.useState(initialValueAnime);
   const handleAnimeChange: React.ChangeEventHandler<HTMLInputElement> = (value: any) => {    
     setStatesFalse();
     setAnime(value); 
@@ -34,7 +58,7 @@ export const FormItemStep1 :  React.FC<FormItemStep1Props> =({infoCardReceived, 
     setInfoCard(newObj);
   }
 
-  const [ pelicula, setPelicula ] = React.useState(false);
+  const [ pelicula, setPelicula ] = React.useState(initialValuePelicula);
   const handlePeliculaChange: React.ChangeEventHandler<HTMLInputElement> = (value: any) => {
     setStatesFalse();
     setPelicula(value);

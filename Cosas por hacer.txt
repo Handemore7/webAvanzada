@@ -1,4 +1,5 @@
-Organizar los estilos de las imagenes en FormItemStep2
-Hacer que la barra de categorias se mueva sin mover el contenido de arriba
-Terminar lo de crear items
-La otra pantalla de visualización
+Lo de categorias, que vaya agregando una por una, por ahora puede ser con un botón al lado y que vaya agregando el value del input de ese momento a un arreglo de strings, con ese arreglo mapearlo y hacer una cosita abajo por cada categoría, una cajita pues con una x para poder eliminarla y al crear el elemento simplemente coge todos esos strings del arreglo y los usa para crear las categorias de la card.
+
+- Al seleccionar peliculas que busque en movies en el fetch, al seleccionar animes con tv y ovas con no sé :v algo por ahí extra supongo.
+
+- Debuggear

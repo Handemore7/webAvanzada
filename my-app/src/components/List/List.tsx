@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { CardItem, CardItemProps } from '../../components/CardItem/CardItem';
-import { detectMouseMovement } from '../../utils/detectMouseMovement';
-import { BrowserRouter, HashRouter, Route, Link } from 'react-router-dom';
-import { Redirect, useHistory, useParams } from 'react-router';
+import { useHistory } from 'react-router';
 import './List.css';
 
 export interface ListProps {
