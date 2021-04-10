@@ -27,7 +27,7 @@ export const MainItem :  React.FC<MainItemProps> =({ contentList}) => {
         return <Redirect to="/"/>
     } 
     
-    const img = getImgUrl(cardElem.image);
+    const img = cardElem.image;
 
     return(<div className={`MainItem`}>
                 <div onClick={interDropback} className="MainItem--background"></div>

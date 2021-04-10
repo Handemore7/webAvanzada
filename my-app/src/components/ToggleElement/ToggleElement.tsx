@@ -15,8 +15,6 @@ export const ToggleElementItem:  React.FC<ToggleElementItemProps> = ({title, sta
         interValueChange(event.target.checked);
     }
     
-    console.log(imgURL);
-    
     switch (type) {
         case "checkbox":
             return (<div className="toggleElemOption">

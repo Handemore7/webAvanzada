@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { getImgUrl } from '../../utils/getImgUrl';
 import { ToggleElementItem } from '../ToggleElement/ToggleElement';
 import './FormItemStep2.css';
 

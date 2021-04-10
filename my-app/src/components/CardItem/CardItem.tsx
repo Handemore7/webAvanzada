@@ -20,14 +20,13 @@ export interface CardItemProps {
 
 export const CardItem:  React.FC<CardItemProps> = ({id, title, type, rating, image, category, dateAdded, dateCompleted, comments, onDeleteItem, onDragItem, onAddItem, onClickItem}) => {  
 
-    const imgSrc = getImgUrl(image);
 
     var categoryArray = category.split(', ');
     
 
     return (<div draggable={true} onDragStart={onDeleteItem} onDrag={onDragItem} onDragEnd={onAddItem} onClick={onClickItem} className={`CardItem`}>
         <h1>{title}</h1>
-        <img src={imgSrc} alt="" /> 
+        <img src={image} alt="" /> 
         <div className="CardItem__categories">
         {
             categoryArray.map(elem => {

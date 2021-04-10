@@ -4,17 +4,12 @@ import { Redirect, useHistory, useParams } from 'react-router';
 import { FormItemStep1 } from '../../components/FormItemStep1/FormItemStep1';
 import { FormItemStep2 } from '../../components/FormItemStep2/FormItemStep2';
 import { FormItemStep3 } from '../../components/FormItemStep3/FormItemStep3';
+import { stringify } from 'node:querystring';
 
 interface CreateElementProps {
     handleCreateCard: (title:any, type:any, categories:any, list:any, comments:string, img:string) => void;
     listContent: any;
 }
-var title:any;
-var type:any;
-var categories:any;
-var list:any;
-var image:any;
-var searchImages: any ;
 
 export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, listContent}) => {
 
@@ -22,8 +17,24 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
 
     const [formStep, setFormStep] = React.useState(1);
 
+    const [searchImages, setSearchImages] = React.useState([{
+        poster_path: '',
+        popularity: 0,
+        id: 0,
+        backdrop_path: '',
+        vote_average: 0,
+        overview: '',
+        first_air_date: '',
+        origin_country: [''],
+        genre_ids: [0],
+        original_language: '',
+        vote_count: 0,
+        name: '',
+        original_name:''
+    }]);
+
     const [ infoCard, setInfoCard ] = React.useState({
-        title: '',
+        title: '.',
         type: '',
         category: '',
         list: 2,
@@ -31,31 +42,12 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
         image: 'empty',
     });
 
-
     const interDropback = () =>{    
         history.push("/");
     }
 
-
     const interCreateCard = (objCard: any) => {
         handleCreateCard(objCard.title, objCard.type,objCard.category, objCard.list, objCard.comments, objCard.image);
-    }
-
-    const interSetCardStep1= (titleReceived: any, typeReceived: any)=>{
-        console.log(titleReceived, typeReceived);
-        title = titleReceived;
-        type = typeReceived;
-    }
-
-    const interSetCardStep2= (imgReceived: any)=>{
-        console.log(imgReceived);
-        image =imgReceived;
-    }
-
-    const interSetCardStep3= (titleReceived: any, typeReceived: any)=>{
-        console.log(titleReceived, typeReceived);
-        title = titleReceived;
-        type = typeReceived;
     }
 
     const handleChangeFormStep= (next: boolean) =>{        
@@ -75,8 +67,7 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
                             setFormStep(newFormStep);
                             console.log(newFormStep);
                         }
-                    }
-                
+                    }   
     }
 
     const nextClicked = () =>{
@@ -90,22 +81,28 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
         handleChangeFormStep(false);
     }
 
+    const setSearchResults = (list: any) =>{
+        console.log(searchImages);
+        setSearchImages(list);
+    }
+
     React.useEffect(
         () => {
-            searchImages = fetch(`https://api.themoviedb.org/3/search/tv?api_key=ad7151c6dd6ce04898723178f00ce514&query=${infoCard.title}`, {
+            fetch(`https://api.themoviedb.org/3/search/tv?api_key=ad7151c6dd6ce04898723178f00ce514&query=${infoCard.title}`, {
                 "method": "GET",
             })
             .then(response => {
                 return response.json();
             })
             .then(response => {
-                return response.results;
+                console.log(response);
+                return setSearchResults(response.results);
             })
             .catch(err => {
                 console.error(err);
             }); 
         },
-        [infoCard],
+        [infoCard.title]
       );
     
 
