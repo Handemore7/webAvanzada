@@ -6,30 +6,51 @@ import './FormItemStep2.css';
 interface FormItemStep2Props {
     infoCardReceived: any;
     setInfoCard: any;
+    searchImages: any;
 }
 
-const interOnClickSearchImg = () =>{
-    /* fetch("https://animenewsnetwork.p.rapidapi.com/api.xml", {
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-key": "74d53471abmshc2d8ff3f2a6b801p1b87dbjsn8577cdc7236e",
-            "x-rapidapi-host": "animenewsnetwork.p.rapidapi.com"
+const comparePopularity = (a: any, b: any) =>{
+        if ( a.popularity < b.popularity ){
+          return -1;
         }
-    })
-    .then(response => {
-        console.log(response);
-    })
-    .catch(err => {
-        console.error(err);
-    }); */ 
-};
+        if ( a.popularity > b.popularity ){
+          return 1;
+        }
+        return 0;
+      }
 
-export const FormItemStep2 :  React.FC<FormItemStep2Props> =({infoCardReceived, setInfoCard}) => {
+
+      var coverImages: any = [];
+const onSearchImg = (searchList:any) =>{  
+    console.log(searchList);
+    //Organize the objects by popularity
+    searchList.sort( comparePopularity );
+    //Set lastItems [] and add select the last 3 objects 
+    var lastItems = [];
+    for (let i = 1; i < 4; i++) {
+        lastItems.push(searchList[searchList.length-i])
+    }
+    //Remove undefined items in lastItems
+    lastItems = lastItems.filter(function (el) {
+        return el != undefined;
+      });
+    //Convert the URL of the images of the objects
+    coverImages = [];
+    lastItems.forEach(elem => {
+        coverImages.push(`https://image.tmdb.org/t/p/w500/${elem.poster_path}`);
+    });
+    console.log(coverImages);
+}
+
+
+
+export const FormItemStep2 :  React.FC<FormItemStep2Props> =({infoCardReceived, setInfoCard, searchImages}) => {
 
     var newObj = infoCardReceived;
-    var imgOption1 = 'Listeners.jpg';
-    var imgOption2 = 'YesterdayWoUtatte.webp';
-    var imgOption3 = 'OdaCinnamonNobunaga.jpg';
+    onSearchImg(searchImages)
+    var imgOption1 = coverImages[0];
+    var imgOption2 = coverImages[1];
+    var imgOption3 = coverImages[2];
 
 const [ img, setImg ] = React.useState(newObj.image);
 const handleImgChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -70,6 +91,7 @@ const setAllStatesFalse = ()=>{
                         type="checkImg"
                         title="Img1" 
                         state={img1}
+                        imgURL={coverImages[0]}
                         interValueChange = {handleImg1Change}
                         />
                     </div>
@@ -78,6 +100,7 @@ const setAllStatesFalse = ()=>{
                         type="checkImg" 
                         title="Img2" 
                         state={img2}
+                        imgURL={coverImages[1]}
                         interValueChange = {handleImg2Change}
                     />
                     </div>
@@ -86,11 +109,12 @@ const setAllStatesFalse = ()=>{
                         type="checkImg" 
                         title="Img3" 
                         state={img3}
+                        imgURL={coverImages[2]}
                         interValueChange = {handleImg3Change}
                         />
                     </div>
                 </div>
-                <button >Buscar img</button>
+                <button>Buscar img</button>
                 {/* <img src={img} width="200" alt=""/> */}
             </div>);
 }

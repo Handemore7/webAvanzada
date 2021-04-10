@@ -215,7 +215,7 @@ export const App = () => {
 
             <InitialListsContext.Provider value={{list: lists, listCards: cards, handleFilterList: handleFilterList}}>
 
-                <Route path="/" >
+                <Route path={['/', '/card/:cardID', '/createElement']} exact >
                     {
                         lists.map(({listName, id}) => {  
                             return <List 

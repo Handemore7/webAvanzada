@@ -14,6 +14,7 @@ var type:any;
 var categories:any;
 var list:any;
 var image:any;
+var searchImages: any ;
 
 export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, listContent}) => {
 
@@ -79,14 +80,34 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
     }
 
     const nextClicked = () =>{
-        console.log('cliqueao Next');
         handleChangeFormStep(true);
+        console.log(infoCard.title);
+        console.log(searchImages);
     }
 
     const backClicked = () =>{
         console.log('cliqueao Back');
         handleChangeFormStep(false);
     }
+
+    React.useEffect(
+        () => {
+            searchImages = fetch(`https://api.themoviedb.org/3/search/tv?api_key=ad7151c6dd6ce04898723178f00ce514&query=${infoCard.title}`, {
+                "method": "GET",
+            })
+            .then(response => {
+                return response.json();
+            })
+            .then(response => {
+                return response.results;
+            })
+            .catch(err => {
+                console.error(err);
+            }); 
+        },
+        [infoCard],
+      );
+    
 
     const renderSwitch = (step: number) => {
         switch (step) {
@@ -99,6 +120,7 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
                 return <FormItemStep2 
                         infoCardReceived = {infoCard}
                         setInfoCard = {setInfoCard}
+                        searchImages = {searchImages}
                         /> 
             case 3:
                 return <FormItemStep3 
