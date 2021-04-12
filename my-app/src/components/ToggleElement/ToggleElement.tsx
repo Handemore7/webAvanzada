@@ -28,6 +28,5 @@ export const ToggleElementItem:  React.FC<ToggleElementItemProps> = ({title, sta
                         <label className="toggleImgOption__label" htmlFor={title}><img className="imgCheck" src={imgURL} alt=""/></label>
                     </div>);
     }
-{/* <img className="imgCheck" src={getImgUrl(img)} alt=""/> */}
     return <div>Algo salió mal e.e</div>;
 }

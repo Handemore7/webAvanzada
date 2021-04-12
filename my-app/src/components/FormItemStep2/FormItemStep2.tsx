@@ -18,10 +18,8 @@ const comparePopularity = (a: any, b: any) =>{
         return 0;
       }
 
-
       var coverImages: any = [];
 const onSearchImg = (searchList:any) =>{  
-    console.log(searchList);
     //Organize the objects by popularity
     searchList.sort( comparePopularity );
     //Set lastItems [] and add select the last 3 objects 
@@ -38,7 +36,6 @@ const onSearchImg = (searchList:any) =>{
     lastItems.forEach(elem => {
         coverImages.push(`https://image.tmdb.org/t/p/w500/${elem.poster_path}`);
     });
-    console.log(coverImages);
 }
 
 

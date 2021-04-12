@@ -31,7 +31,7 @@ export const List:  React.FC<ListProps> = ({id, name, content, handleDeleteItem,
         <div className="List__content">
         {content.map((elem: any) => {
             const interDeleteItem = () =>{
-                console.log('Elimine el item');
+                //console.log('Elimine el item');
             }
 
             const interDragItem = () =>{

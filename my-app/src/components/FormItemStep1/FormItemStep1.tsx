@@ -19,8 +19,6 @@ export const FormItemStep1 :  React.FC<FormItemStep1Props> =({infoCardReceived, 
       setInfoCard(newObj);
   }
 
-  console.log(newObj.type);
-
   var initialValueOva: any = false;
   var initialValuePelicula: any = false;
   var initialValueAnime: any = false;

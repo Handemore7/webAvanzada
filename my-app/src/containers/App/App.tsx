@@ -159,8 +159,6 @@ export const App = () => {
     } 
 
     const handleListAdd = (listId: number, cardId: number) => {
-        console.log(listId, cardId);
-        
         const index = cards.findIndex((elem) => {
             return elem.id === cardId;
         });
