@@ -1,9 +1,7 @@
 import React from 'react';
-import { Redirect, useHistory} from 'react-router';
 import { HashRouter, Route, Link } from 'react-router-dom';
 import { List } from '../../components/List/List';
 import { MainItem } from '../../components/MainItem/MainItem';
-import { detectMouseMovement } from '../../utils/detectMouseMovement';
 import { InitialListsContext } from '../../utils/InitialListsContext';
 import { CreateElement } from '../CreateElement/CreateElement';
 import { FiltersView } from '../FiltersView/FiltersView';
@@ -143,8 +141,6 @@ const initialLists = [
     ];
 
 export const App = () => {
-
-    const history = useHistory();
     
     const [lists, setLists] = React.useState(initialLists);
     const [cards, setCards] = React.useState(initialCards);
@@ -167,13 +163,10 @@ export const App = () => {
         setCards(copy);
     }
 
-    var mousePos: any;
     const handleDragItem = (id:number) =>{
-        mousePos = detectMouseMovement();
     }
 
-    const handleCreateCard = (title1: string, type1: string, category1: string, list1:number , comments1: string, img1: string) =>{        
-        console.log(title1, type1, category1, list1, comments1, img1);
+    const handleCreateCard = (title1: string, type1: string, category1: string, list1:number , comments1: string, img1: string) =>{  
         
         const copy = cards.slice();
         var newObj = {
@@ -192,15 +185,10 @@ export const App = () => {
         setCards(copy);
     }
 
-    const interDropback = () =>{
-        console.log(history);
-    }
-
     const handleFilterList = (list: number) => {
         var arrayList: any = [];
         cards.forEach(elem => {
                 if(elem.list === list){
-                    //arrayList.unshift(elem);
                     arrayList.push(elem);                
                 }
             });
@@ -217,6 +205,7 @@ export const App = () => {
                     {
                         lists.map(({listName, id}) => {  
                             return <List 
+                            key = {`l${id}`}
                             id = {id}
                             name = {listName}
                             content = {handleFilterList(id)}

@@ -31,26 +31,23 @@ export const List:  React.FC<ListProps> = ({id, name, content, handleDeleteItem,
         <div className="List__content">
         {content.map((elem: any) => {
             const interDeleteItem = () =>{
-                //console.log('Elimine el item');
             }
 
             const interDragItem = () =>{
-                //console.log('En medio del drag');
             }
 
             const interClickItem = () =>{
-                //console.log('Me estan clickeandooo!!!');
                 history.push(`card/${elem.id}`);
             }
 
             const interListAdd = () =>{
-                //console.log('El drag termina');
                 handleDeleteItem(elem.id);
                 lastItem = elem.id;
                 handleListAdd(listID2, lastItem);
             }
              
             return <CardItem 
+            key = {`c${elem.id}`}
             id = {elem.id}
             title = {elem.title}
             type = {elem.type}

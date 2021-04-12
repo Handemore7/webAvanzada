@@ -1,10 +1,9 @@
 import * as React from 'react';
 import './CreateElement.css';
-import { Redirect, useHistory, useParams } from 'react-router';
+import { useHistory } from 'react-router';
 import { FormItemStep1 } from '../../components/FormItemStep1/FormItemStep1';
 import { FormItemStep2 } from '../../components/FormItemStep2/FormItemStep2';
 import { FormItemStep3 } from '../../components/FormItemStep3/FormItemStep3';
-import { stringify } from 'node:querystring';
 
 interface CreateElementProps {
     handleCreateCard: (title:any, type:any, categories:any, list:any, comments:string, img:string) => void;
@@ -53,36 +52,29 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
     const handleChangeFormStep= (next: boolean) =>{        
                     if (next) {
                         var newFormStep = formStep + 1;
-                        setFormStep(newFormStep);
-                        console.log(newFormStep);
+                        setFormStep(newFormStep);                        
                         
-                        if (newFormStep == 4) {
-                            console.log(infoCard);
+                        if (newFormStep == 4) {                            
                             interCreateCard(infoCard);
                             history.push("/")
                         }
                     }else{
                         if (formStep > 1) {
                             var newFormStep = formStep - 1;
-                            setFormStep(newFormStep);
-                            console.log(newFormStep);
+                            setFormStep(newFormStep);                            
                         }
                     }   
     }
 
     const nextClicked = () =>{
-        handleChangeFormStep(true);
-        console.log(infoCard.title);
-        console.log(searchImages);
+        handleChangeFormStep(true);                
     }
 
-    const backClicked = () =>{
-        console.log('cliqueao Back');
+    const backClicked = () =>{        
         handleChangeFormStep(false);
     }
 
-    const setSearchResults = (list: any) =>{
-        console.log(searchImages);
+    const setSearchResults = (list: any) =>{        
         setSearchImages(list);
     }
 
@@ -94,12 +86,10 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
             .then(response => {
                 return response.json();
             })
-            .then(response => {
-                console.log(response);
+            .then(response => {                
                 return setSearchResults(response.results);
             })
-            .catch(err => {
-                console.error(err);
+            .catch(err => {                
             }); 
         },
         [infoCard.title]

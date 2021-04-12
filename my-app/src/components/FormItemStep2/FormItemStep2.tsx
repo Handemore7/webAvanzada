@@ -38,8 +38,6 @@ const onSearchImg = (searchList:any) =>{
     });
 }
 
-
-
 export const FormItemStep2 :  React.FC<FormItemStep2Props> =({infoCardReceived, setInfoCard, searchImages}) => {
 
     var newObj = infoCardReceived;
@@ -47,10 +45,6 @@ export const FormItemStep2 :  React.FC<FormItemStep2Props> =({infoCardReceived, 
     var imgOption1 = coverImages[0];
     var imgOption2 = coverImages[1];
     var imgOption3 = coverImages[2];
-
-const [ img, setImg ] = React.useState(newObj.image);
-const handleImgChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-}
 
 const [ img1, setImg1 ] = React.useState(false);
 const handleImg1Change: React.ChangeEventHandler<HTMLInputElement> = (value: any) => { 
@@ -111,6 +105,5 @@ const setAllStatesFalse = ()=>{
                     </div>
                 </div>
                 <button>Buscar img</button>
-                {/* <img src={img} width="200" alt=""/> */}
             </div>);
 }

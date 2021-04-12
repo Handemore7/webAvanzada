@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { getImgUrl } from '../../utils/getImgUrl';
 import './CardItem.css';
 
 export interface CardItemProps {
@@ -18,10 +17,9 @@ export interface CardItemProps {
     onClickItem?: () => void;
 }
 
-export const CardItem:  React.FC<CardItemProps> = ({id, title, type, rating, image, category, dateAdded, dateCompleted, comments, onDeleteItem, onDragItem, onAddItem, onClickItem}) => {  
+export const CardItem:  React.FC<CardItemProps> = ({title, image, category, onDeleteItem, onDragItem, onAddItem, onClickItem}) => {  
 
-
-    var categoryArray = category.split(', ');
+    var categoryArray = category.split(', '); //Aqui hago la división de las categorías pero esto no debería ser aqui
     
 
     return (<div draggable={true} onDragStart={onDeleteItem} onDrag={onDragItem} onDragEnd={onAddItem} onClick={onClickItem} className={`CardItem`}>

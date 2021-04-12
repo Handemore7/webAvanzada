@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useHistory } from 'react-router';
 import { ToggleElementItem } from '../ToggleElement/ToggleElement';
 import './FormItemStep1.css';
 

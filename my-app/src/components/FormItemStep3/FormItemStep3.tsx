@@ -26,25 +26,25 @@ const handleCategoriesChange: React.ChangeEventHandler<HTMLInputElement> = (even
     var initialValueList5: boolean = false;
 
 const setInitialValue = (listType: any) =>{
-    switch (listType) {
-        case 1:
-            initialValueList1 = true;
-        break;
-        case 2:
-            initialValueList2 = true;
-        break;
-        case 3:
-            initialValueList3 = true;
-        break;
-        case 4:
-            initialValueList4 = true;
-        break;
-        case 5:
-            initialValueList5 = true;
-        break;
-        default:
-        break;
-    }
+switch (listType) {
+    case 1:
+        initialValueList1 = true;
+    break;
+    case 2:
+        initialValueList2 = true;
+    break;
+    case 3:
+        initialValueList3 = true;
+    break;
+    case 4:
+        initialValueList4 = true;
+    break;
+    case 5:
+        initialValueList5 = true;
+    break;
+    default:
+    break;
+}
 }
 
 setInitialValue(newObj.list);
@@ -99,63 +99,41 @@ const setAllStatesFalse = ()=>{
     setList4(false);
     setList5(false);
 }
-
-const setStateAndAHandleInToggle = (id: number, both: any) =>{
-    switch (id) {
-        case 1:
-            if (both) {
-                return list1;
-            }else{
-                return handleList1Change;
-            }
-        break;
-        case 2:
-            if (both) {
-                return list2;
-            }else{
-                return handleList2Change;
-            }
-        break;
-        case 3:
-            if (both) {
-                return list3;
-            }else{
-                return handleList3Change;
-            }
-        break;
-        case 4:
-            if (both) {
-                return list4;
-            }else{
-                return handleList4Change;
-            }
-        break;
-        case 5:
-            if (both) {
-                return list5;
-            }else{
-                return handleList5Change;
-            }
-        break;
-        default:
-        break;
-    }
-}
-
     return( <div>
                 <div className="inputInfoCard">Categorias: <input value={categories} onChange={handleCategoriesChange}type="text"/> </div>
                 <div className="inputInfoCard">Lista: 
                     <div>
-                        {
-                          listContent.map(({listName, id}:any) => {  
-                            return <ToggleElementItem 
+                                    <ToggleElementItem 
                                         type= "checkbox"
-                                        title= {listName}
-                                        state= {setStateAndAHandleInToggle(id, true)}
-                                        interValueChange = {setStateAndAHandleInToggle(id, false)}
+                                        title= "En espera"
+                                        state= {list1}
+                                        interValueChange = {handleList1Change}
                                     />
-                        })}
-                    </div>
+                                    <ToggleElementItem 
+                                        type= "checkbox"
+                                        title= "Planeado"
+                                        state= {list2}
+                                        interValueChange = {handleList2Change}
+                                    />
+                                    <ToggleElementItem 
+                                        type= "checkbox"
+                                        title= "En proceso"
+                                        state= {list3}
+                                        interValueChange = {handleList3Change}
+                                    />
+                                    <ToggleElementItem 
+                                        type= "checkbox"
+                                        title= "Abandonado"
+                                        state= {list4}
+                                        interValueChange = {handleList4Change}
+                                    />
+                                    <ToggleElementItem 
+                                        type= "checkbox"
+                                        title= "Completado"
+                                        state= {list5}
+                                        interValueChange = {handleList5Change}
+                                    />
+                                </div>
                 </div>
                 <div className="inputInfoCard">Comentarios: <input value={comments} onChange={handleCommentsChange} type="text"/> </div>
             </div>);

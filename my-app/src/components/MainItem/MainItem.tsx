@@ -1,8 +1,5 @@
 import * as React from 'react';
 import { Redirect, useHistory, useParams } from 'react-router';
-import { getImgUrl } from '../../utils/getImgUrl';
-import { CardItemProps } from '../CardItem/CardItem';
-import { BrowserRouter, HashRouter, Route, Link } from 'react-router-dom';
 import './MainItem.css';
 
 interface MainItemProps {
@@ -17,7 +14,6 @@ export const MainItem :  React.FC<MainItemProps> =({ contentList}) => {
     const cardElem = contentList.find((elem: any) => {
         return elem.id === parseInt(cardID);
     });
-    
     
     const interDropback = () =>{    
         history.push("/");

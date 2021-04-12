@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { getImgUrl } from '../../utils/getImgUrl';
 import './ToggleElement.css';
 
 export interface ToggleElementItemProps {
