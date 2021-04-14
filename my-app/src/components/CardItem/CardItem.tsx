@@ -23,8 +23,8 @@ export const CardItem:  React.FC<CardItemProps> = ({title, image, category, onDe
     
 
     return (<div draggable={true} onDragStart={onDeleteItem} onDrag={onDragItem} onDragEnd={onAddItem} onClick={onClickItem} className={`CardItem`}>
-        <h1>{title}</h1>
         <img src={image} alt="" /> 
+        <h1 className="CardItem__title">{title}</h1>
         <div className="CardItem__categories">
         {
             categoryArray.map(elem => {

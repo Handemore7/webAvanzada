@@ -4,7 +4,7 @@
     flex-direction: row;
     position: relative;
     user-select: none;
-    border: 1px solid black;
+    border: 1px solid #0B0A10;
     width: 20%;
     height: 100vh;
     align-items: center;
@@ -13,7 +13,7 @@
 
 ::-webkit-scrollbar {
     width: 0px;
-    height: 5px;
+    height: 0px;
   }
   
   /* Track */
@@ -30,32 +30,35 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
-.List--selected{
-    background: #2B343B;
-}
 
 .List__title {
-    background: #1B1726;
+    background: #543CCF;
     display: flex;
+    margin: auto;
     opacity: 100%;
     color: white;
     position: sticky;
     top: 0;
     z-index: 10;
-    width: 100%;
+    width: 90%;
     justify-content: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .List__title span {
     margin: auto 10px;
     padding: 1px 5px;
-    border: 2px solid #47545F;
+    border: 2px solid white;
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
 }
 
 .List__content {
     display: grid;
     place-items: center;
-
+    margin-top: 3vh;
 }   
 /* 
 .List1, .List5{
