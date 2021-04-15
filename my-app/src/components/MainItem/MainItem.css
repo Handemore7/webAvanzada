@@ -20,7 +20,6 @@
 .MainItem--content{
     position: absolute;
     background: #FE7979;
-    opacity: 100%;
     width: 80%;
     margin: 0px auto;
     display: flex;
