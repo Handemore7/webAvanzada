@@ -82,7 +82,7 @@ const setStatesFalse = () => {
   }
 
     return( <div className="formStep1">
-                <h1>Formulario?</h1>
+                <h1>Qué quieres agregar?</h1>
                 <div className="formStep1__inputElems">
                     <ToggleElementItem 
                     type="checkbox"
@@ -103,6 +103,6 @@ const setStatesFalse = () => {
                     interValueChange = {handleOvaChange}
                     />
                 </div>
-                <div className="inputInfoCard">Nombre {`${ova ? 'del Ova': anime ? 'del Anime' : 'de la pelicula'}`}<input value={title} onChange={handleTitleChange} type="text"/> </div>
+                <div className="formStep1__inputInfoCard">Nombre {`${ova ? 'del Ova': anime ? 'del Anime' : 'de la pelicula'}`}<input value={title} onChange={handleTitleChange} type="text"/> </div>
             </div>);
 }

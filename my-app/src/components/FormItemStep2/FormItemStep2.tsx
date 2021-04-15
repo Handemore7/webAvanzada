@@ -75,7 +75,17 @@ const setAllStatesFalse = ()=>{
 }
 
     return( <div className="formStep2">
+                <h1>Selecciona una imagen</h1>
                 <div className="formStep2__optionsImg">
+                    <div className="formStep2__optionsImg__item">
+                        <ToggleElementItem
+                        type="checkImg" 
+                        title="Img2" 
+                        state={img2}
+                        imgURL={coverImages[1]}
+                        interValueChange = {handleImg2Change}
+                    />
+                    </div>
                     <div className="formStep2__optionsImg__item">
                         <ToggleElementItem 
                         type="checkImg"
@@ -88,15 +98,6 @@ const setAllStatesFalse = ()=>{
                     <div className="formStep2__optionsImg__item">
                         <ToggleElementItem
                         type="checkImg" 
-                        title="Img2" 
-                        state={img2}
-                        imgURL={coverImages[1]}
-                        interValueChange = {handleImg2Change}
-                    />
-                    </div>
-                    <div className="formStep2__optionsImg__item">
-                        <ToggleElementItem
-                        type="checkImg" 
                         title="Img3" 
                         state={img3}
                         imgURL={coverImages[2]}
@@ -104,6 +105,6 @@ const setAllStatesFalse = ()=>{
                         />
                     </div>
                 </div>
-                <button>Buscar img</button>
+                <button>Subir imagen</button>
             </div>);
 }

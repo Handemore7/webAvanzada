@@ -1,10 +1,34 @@
-.inputInfoCard{
-
-}
-.inputInfoCard #ova, #anime, #pelicula {
-    display: none;
+.formStep1 {
+    width: 100%;
 }
 
-.formStep1__inputElems {
-    
+.formStep1 h1{
+    text-align: center;
+}
+
+.formStep1__inputInfoCard{
+    width: 100%;
+    display: grid;
+    text-align: center;
+    place-content: center;
+    margin-top: 10vh;
+}
+
+.formStep1__inputInfoCard input{
+    display: flex;
+    width: 40vh;
+    height: 5vh;
+    outline: none;
+}
+
+.formStep1__inputInfoCard input:focus{
+    border-color: #7059E3;
+}
+
+
+.formStep1__inputElems{
+    width: 50%;
+    margin: auto;
+    display: flex;
+    text-align: center;
 }

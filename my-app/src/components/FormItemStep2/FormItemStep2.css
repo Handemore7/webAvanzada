@@ -1,15 +1,27 @@
 .formStep2 {
-
+    width: 100%;
+    display: inline;
+    place-content: top;
+    place-content: center;
 }
-
-.formStep2__optionsImg{
-
+.formStep2 h1{
+    text-align: center;
 }
 
 .formStep2__optionsImg {
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .formStep2__optionsImg__item {
     display: inline-block;
+}
+
+.formStep2 button{
+    display: flex;
+    width: 30%;
+    justify-content: center;
+    margin: auto;
+    margin-top: 3vh;
 }

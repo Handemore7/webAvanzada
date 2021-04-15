@@ -33,7 +33,7 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
     }]);
 
     const [ infoCard, setInfoCard ] = React.useState({
-        title: '.',
+        title: '',
         type: '',
         category: '',
         list: 2,
@@ -80,7 +80,14 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
 
     React.useEffect(
         () => {
-            fetch(`https://api.themoviedb.org/3/search/tv?api_key=ad7151c6dd6ce04898723178f00ce514&query=${infoCard.title}`, {
+            var Title: string;
+            if (infoCard.title === '') {
+                Title = 'Nichijou'
+            }else{
+                Title = infoCard.title;
+            }
+            console.log(Title);
+            fetch(`https://api.themoviedb.org/3/search/tv?api_key=ad7151c6dd6ce04898723178f00ce514&query=${Title}`, {
                 "method": "GET",
             })
             .then(response => {
@@ -92,7 +99,7 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
             .catch(err => {                
             }); 
         },
-        [infoCard.title]
+        [formStep]
       );
     
 
