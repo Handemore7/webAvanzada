@@ -9,18 +9,6 @@ import './App.css';
 
 const initialCards = [
     {
-        id: 0,
-        title: 'Adachi To Shimamura',
-        type: 'Anime',
-        list: 1,
-        rating: 5,
-        image: 'https://image.tmdb.org/t/p/w500//teSwoEFkqWFdmL2EdSvGVLU6sse.jpg',
-        category: 'Acción, Comedia',
-        dateAdded: '50000000000',
-        dateCompleted: '50000005000',
-        comments: 'Adachi y Shimamura, dos chicas que asisten a la misma preparatoria y que son amigas inseparables. Ya sea jugando tenis, platicar sobre sus programas de televisión favoritos, o solo relajándose, siempre están juntas. Cuando Adachi se da cuenta de que siente una atracción física por Shimamura, toda su relación comenzará a cambiar, ¿será para bien o para mal?',
-    },
-    {
         id: 1,
         title: 'Horimiya',
         type: 'Anime',
@@ -31,6 +19,18 @@ const initialCards = [
         dateAdded: '500000000000',
         dateCompleted: '500000050000',
         comments: 'Aunque admirada en la escuela por su amabilidad y destreza académica, la estudiante de preparatoria Kyouko Hori ha estado escondiendo otro lado de ella. Con sus padres a menudo fuera de casa debido al trabajo, Hori tiene que cuidar de su hermano menor y hacer las tareas del hogar, sin tener tiempo para socializar fuera de la escuela. Mientras tanto, Izumi Miyamura es visto como un inquietante otaku que usa anteojos. Sin embargo, en realidad es una persona amable e inepta para estudiar. Además, tiene nueve piercings escondidos detrás de su largo cabello, y un tatuaje a lo largo de su espalda y hombro izquierdo. Por pura casualidad, Hori y Miyamura se cruzan fuera de la escuela, ninguno luciendo como el otro lo esperaría. Estos polos aparentemente opuestos se convierten en amigos, compartiendo un lado que nunca le han mostrado a nadie.',
+    },
+    {
+        id: 0,
+        title: 'Adachi To Shimamura',
+        type: 'Anime',
+        list: 1,
+        rating: 5,
+        image: 'https://image.tmdb.org/t/p/w500//teSwoEFkqWFdmL2EdSvGVLU6sse.jpg',
+        category: 'Acción, Comedia',
+        dateAdded: '50000000000',
+        dateCompleted: '50000005000',
+        comments: 'Adachi y Shimamura, dos chicas que asisten a la misma preparatoria y que son amigas inseparables. Ya sea jugando tenis, platicar sobre sus programas de televisión favoritos, o solo relajándose, siempre están juntas. Cuando Adachi se da cuenta de que siente una atracción física por Shimamura, toda su relación comenzará a cambiar, ¿será para bien o para mal?',
     },
     {
         id: 2,
