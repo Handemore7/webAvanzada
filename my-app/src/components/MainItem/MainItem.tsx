@@ -19,7 +19,7 @@ export const MainItem :  React.FC<MainItemProps> =({ contentList}) => {
         history.push("/");
     }
     
-    if (cardElem == undefined) {
+    if (cardElem === undefined) {
         return <Redirect to="/"/>
     } 
     

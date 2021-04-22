@@ -28,8 +28,8 @@ const onSearchImg = (searchList:any) =>{
         lastItems.push(searchList[searchList.length-i])
     }
     //Remove undefined items in lastItems
-    lastItems = lastItems.filter(function (el) {
-        return el != undefined;
+    lastItems = lastItems.filter(function (elem) {
+        return elem !== undefined;
       });
     //Convert the URL of the images of the objects
     coverImages = [];

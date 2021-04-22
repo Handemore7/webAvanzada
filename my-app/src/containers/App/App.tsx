@@ -154,13 +154,24 @@ export const App = () => {
         setCards(copy);
     } 
 
-    const handleListAdd = (listId: number, cardId: number) => {
-        const index = cards.findIndex((elem) => {
-            return elem.id === cardId;
+    const handleListAdd = (cardIdDroppable: number, cardIdDraggable: number) => {
+        console.log('drop: '+cardIdDroppable);
+        console.log('drag: '+cardIdDraggable);
+        
+        //find the droppable card
+        const indexDrop = cards.findIndex((elem) => {
+            return elem.id === cardIdDroppable;
         });
+        var newList = cards[indexDrop].list;
+
+        //find the droppable card
+        const indexDrag = cards.findIndex((elem) => {
+            return elem.id === cardIdDraggable;
+        });
+
         const copy = cards.slice();
-        copy[index].list = listId;
-        setCards(copy);
+        copy[indexDrag].list = newList;
+        setCards(copy); 
     }
 
     const handleDragItem = (id:number) =>{
@@ -199,7 +210,7 @@ export const App = () => {
 
         <HashRouter basename={process.env.PUBLIC_URL}>
 
-            <InitialListsContext.Provider value={{list: lists, listCards: cards, handleFilterList: handleFilterList}}>
+            <InitialListsContext.Provider value={{list: lists, listCards: cards, handleFilterList: handleFilterList, handleListAdd: handleListAdd, handleListRemove: handleListRemove}}>
 
                 <Route path={['/', '/card/:cardID', '/createElement']} exact >
                     {
@@ -209,9 +220,6 @@ export const App = () => {
                             id = {id}
                             name = {listName}
                             content = {handleFilterList(id)}
-                            handleDeleteItem = {handleListRemove}
-                            handleListAdd = {handleListAdd}
-                            handleDragItem = {handleDragItem}
                             />
                         }
                         )}

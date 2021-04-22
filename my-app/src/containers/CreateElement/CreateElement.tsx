@@ -51,16 +51,16 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
 
     const handleChangeFormStep= (next: boolean) =>{        
                     if (next) {
-                        var newFormStep = formStep + 1;
+                        let newFormStep = formStep + 1;
                         setFormStep(newFormStep);                        
                         
-                        if (newFormStep == 4) {                            
+                        if (newFormStep === 4) {                            
                             interCreateCard(infoCard);
                             history.push("/")
                         }
                     }else{
                         if (formStep > 1) {
-                            var newFormStep = formStep - 1;
+                            let newFormStep = formStep - 1;
                             setFormStep(newFormStep);                            
                         }
                     }   
@@ -99,7 +99,7 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
             .catch(err => {                
             }); 
         },
-        [formStep]
+        [formStep, infoCard.title]
       );
     
 

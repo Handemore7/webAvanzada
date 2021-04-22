@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { InitialListsContext } from '../../utils/InitialListsContext';
 import './CardItem.css';
 
 export interface CardItemProps {
@@ -11,18 +12,45 @@ export interface CardItemProps {
     dateAdded: string;
     dateCompleted?: string;
     comments?: string;
-    onDeleteItem?: () => void;
-    onDragItem?: () => void; 
-    onAddItem?: () => void;
     onClickItem?: () => void;
 }
 
-export const CardItem:  React.FC<CardItemProps> = ({title, image, category, onDeleteItem, onDragItem, onAddItem, onClickItem}) => {  
+export const CardItem:  React.FC<CardItemProps> = ({id, title, image, category, onClickItem}) => {  
+
+    const { list, handleListAdd, handleListRemove } = React.useContext(InitialListsContext);
+    var cardIdDraggable : number;
 
     var categoryArray = category.split(', '); //Aqui hago la división de las categorías pero esto no debería ser aqui
-    
+    const prevent = (event: any) =>{
+        event.preventDefault();
+    }
 
-    return (<div draggable={true} onDragStart={onDeleteItem} onDrag={onDragItem} onDragEnd={onAddItem} onClick={onClickItem} className={`CardItem`}>
+    const preventOnDrop = (event: any) =>{
+        event.preventDefault();
+        console.log(cardIdDraggable);
+        
+        console.log('drop: '+id);
+        deleteAndAddItem(id, cardIdDraggable)
+    }
+
+    const onDragStart = (event: any) =>{
+        cardIdDraggable = id;
+        console.log('dragStart: '+id);
+    }   
+
+    const onDragItem = (event: any) =>{
+
+    } 
+    const onDragEnd = (event: any) =>{
+
+    } 
+
+    const deleteAndAddItem = (droppable: number, draggable: number) =>{
+        handleListRemove(2);
+        handleListAdd(droppable, 2);
+    }
+
+    return (<div draggable={true} onDragStart={onDragStart} onDrag={onDragItem} onClick={onClickItem} className={`CardItem`} onDragOver={prevent} onDragEnter={prevent} onDragEnd={onDragEnd} onDrop={preventOnDrop}>
         <img src={image} alt="" /> 
         <h1 className="CardItem__title">{title}</h1>
         <div className="CardItem__categories">

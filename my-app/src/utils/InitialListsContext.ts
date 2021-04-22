@@ -8,4 +8,10 @@ export const InitialListsContext = createContext({
     }],
     listCards: [] as CardItemType[],
     handleFilterList: (id: number) => undefined,
+    handleListAdd: (cardIdDroppable: number, carIdDraggable: number) => {
+        console.log("wtf amigo, como llegaste aqui?");
+    },
+    handleListRemove: (id: number) => {
+        console.log("wtf amigo, como llegaste aqui?");
+    }
 });
