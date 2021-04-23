@@ -155,8 +155,8 @@ export const App = () => {
     } 
 
     const handleListAdd = (cardIdDroppable: number, cardIdDraggable: number) => {
-        console.log('drop: '+cardIdDroppable);
-        console.log('drag: '+cardIdDraggable);
+        //console.log('drop: '+cardIdDroppable);
+        //console.log('drag: '+cardIdDraggable);
         
         //find the droppable card
         const indexDrop = cards.findIndex((elem) => {

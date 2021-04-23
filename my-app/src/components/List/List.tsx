@@ -12,6 +12,10 @@ export interface ListProps {
 export const List:  React.FC<ListProps> = ({id, name, content}) => {
 
     const history = useHistory();
+
+    const interOnDrop = (draggableItemID: number) =>{
+        console.log(draggableItemID);
+    }
     
     return (<div className={`List List${id}`} > 
         <div className={`List__title`}>
@@ -36,6 +40,7 @@ export const List:  React.FC<ListProps> = ({id, name, content}) => {
             dateCompleted = {elem.dateCompleted}
             comments = {elem.comments}   
             onClickItem = {interClickItem}
+            onDropItem = {interOnDrop}
             />   
         })}
         </div>

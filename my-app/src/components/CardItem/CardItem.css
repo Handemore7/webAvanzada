@@ -6,10 +6,26 @@
     background: #7059E3;
     overflow-x: hidden;
     border-radius: 10px;
+    position: relative;
 }
 
 .CardItem__title {
     color: white;
+}
+
+.CardItem__zone{
+    height: 50%;
+    width: 100%;
+    position: absolute;
+    
+}
+
+.CardItem__zone--up{
+    top: 0px;
+}
+
+.CardItem__zone--down{
+    bottom: 0px;
 }
 
 .CardItem h1 {
