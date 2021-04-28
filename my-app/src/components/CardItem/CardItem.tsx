@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { InitialListsContext } from '../../utils/InitialListsContext';
-import { dragAndDropItems } from '../../utils/DragAndDropItems';
+import { DragAndDropItems } from '../../utils/DragAndDropItems';
 import './CardItem.css';
 
 export interface CardItemProps {
@@ -14,17 +14,15 @@ export interface CardItemProps {
     dateCompleted?: string;
     comments?: string;
     onClickItem?: () => void;
-    onDropItem?: (draggableItemID: number) => void,
+    onDropItem: (draggableItemID: number) => void;
 }
 
 export const CardItem:  React.FC<CardItemProps> = ({id, title, image, category, onClickItem, onDropItem}) => {  
 
-    const { list, handleListAdd, handleListRemove } = React.useContext(InitialListsContext);
-
-    const { draggableItemActive } = React.useContext(dragAndDropItems);
-
-    const [DraggableItemActiveId, setDraggableItemActive] = React.useState(draggableItemActive);
-
+    const { list, handleListAdd, handleListRemove, draggableItemActive } = React.useContext(InitialListsContext);
+    console.log('id: '+id+' contexto: '+draggableItemActive);
+    
+    
     var categoryArray = category.split(', '); //Aqui hago la división de las categorías pero esto no debería ser aqui
     const prevent = (event: any) =>{
         event.preventDefault();
@@ -39,20 +37,18 @@ export const CardItem:  React.FC<CardItemProps> = ({id, title, image, category, 
     }
     const preventOnDropUp = (event: any) =>{
         event.preventDefault();
-        console.log(DraggableItemActiveId);
+        //console.log(DraggableItemActiveId);
         
         //console.log('dropup: '+id);
     }
     const preventOnDropDown = (event: any) =>{
         event.preventDefault();
-        console.log(DraggableItemActiveId);
+        //console.log(DraggableItemActiveId);
         
         //console.log('dropdown: '+id);
     }
 
     const onDragStart = (event: any) =>{
-        setDraggableItemActive(id);
-        console.log(id);
         
         //console.log('dragStart: '+id);
     }   
@@ -61,7 +57,8 @@ export const CardItem:  React.FC<CardItemProps> = ({id, title, image, category, 
 
     } 
     const onDragEnd = (event: any) =>{
-        
+        //console.log(DraggableItemActiveId);
+        onDropItem(id);
     } 
 
     const deleteAndAddItem = (droppable: number, draggable: number) =>{
@@ -71,8 +68,9 @@ export const CardItem:  React.FC<CardItemProps> = ({id, title, image, category, 
 
     return (
     <div className={`CardItem`} draggable={true} onDragStart={onDragStart} onDrag={onDragItem} onClick={onClickItem} onDragOver={prevent} onDragEnter={prevent} onDragEnd={onDragEnd} onDrop={preventOnDrop}>
+        
                 <div className='CardItem__zone CardItem__zone--up' onDragOver={prevent} onDragEnter={prevent} onDrop={preventOnDropUp}></div>
-                <div className='CardItem__zone CardItem__zone--down'  onDragOver={prevent} onDragEnter={prevent} onDrop={preventOnDropDown}></div>
+                <div className='CardItem__zone CardItem__zone--down' onDragOver={prevent} onDragEnter={prevent} onDrop={preventOnDropDown}></div>
                     <div>
                         <img src={image} alt="" /> 
                         <h1 className="CardItem__title">{title}</h1>

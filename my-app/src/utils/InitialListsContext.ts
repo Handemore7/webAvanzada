@@ -13,5 +13,6 @@ export const InitialListsContext = createContext({
     },
     handleListRemove: (id: number) => {
         console.log("wtf amigo, como llegaste aqui?");
-    }
+    },
+    draggableItemActive: 0,
 });

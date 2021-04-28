@@ -2,19 +2,24 @@ import * as React from 'react';
 import { CardItem, CardItemProps } from '../../components/CardItem/CardItem';
 import { useHistory } from 'react-router';
 import './List.css';
+import { DragAndDropItems } from '../../utils/DragAndDropItems';
 
 export interface ListProps {
     id: number;
     name: string;
     content: CardItemProps[];
+    xd: (value: any)=>void;
 }
 
-export const List:  React.FC<ListProps> = ({id, name, content}) => {
+export const List:  React.FC<ListProps> = ({id, name, content, xd}) => {
 
     const history = useHistory();
 
+    const { draggableItemActive } = React.useContext(DragAndDropItems);
+
+
     const interOnDrop = (draggableItemID: number) =>{
-        console.log(draggableItemID);
+        xd(draggableItemID);
     }
     
     return (<div className={`List List${id}`} > 

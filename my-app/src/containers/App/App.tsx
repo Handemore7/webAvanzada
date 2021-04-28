@@ -2,6 +2,7 @@ import React from 'react';
 import { HashRouter, Route, Link } from 'react-router-dom';
 import { List } from '../../components/List/List';
 import { MainItem } from '../../components/MainItem/MainItem';
+import { CardItemType } from '../../utils/cardItemType';
 import { InitialListsContext } from '../../utils/InitialListsContext';
 import { CreateElement } from '../CreateElement/CreateElement';
 import { FiltersView } from '../FiltersView/FiltersView';
@@ -155,8 +156,8 @@ export const App = () => {
     } 
 
     const handleListAdd = (cardIdDroppable: number, cardIdDraggable: number) => {
-        //console.log('drop: '+cardIdDroppable);
-        //console.log('drag: '+cardIdDraggable);
+        console.log('drop: '+cardIdDroppable);
+        console.log('drag: '+cardIdDraggable);
         
         //find the droppable card
         const indexDrop = cards.findIndex((elem) => {
@@ -171,10 +172,21 @@ export const App = () => {
 
         const copy = cards.slice();
         copy[indexDrag].list = newList;
+        console.log(copy);
+        arrayMove(copy, indexDrag, indexDrop, true);
         setCards(copy); 
     }
 
-    const handleDragItem = (id:number) =>{
+    function arrayMove(arr: CardItemType [], fromIndex: number, toIndex: number, dropUp: boolean) {
+        var element = arr[fromIndex];
+        if (dropUp) {
+            console.log(arr[toIndex]);
+            arr.splice(toIndex, 0, element);
+            arr.splice(fromIndex, 1);
+        }else{
+            arr.splice(fromIndex, 1);
+            arr.splice(toIndex-1, 0, element);
+        }
     }
 
     const handleCreateCard = (title1: string, type1: string, category1: string, list1:number , comments1: string, img1: string) =>{  
@@ -205,12 +217,17 @@ export const App = () => {
             });
             return (arrayList);
     }
+
+    const [stateTest, setStateTest] = React.useState(0);
+    const interxD = (value: any)=>{
+        setStateTest(value)
+    }
     
     return (<main className="AppMain">
 
         <HashRouter basename={process.env.PUBLIC_URL}>
 
-            <InitialListsContext.Provider value={{list: lists, listCards: cards, handleFilterList: handleFilterList, handleListAdd: handleListAdd, handleListRemove: handleListRemove}}>
+            <InitialListsContext.Provider value={{list: lists, listCards: cards, handleFilterList: handleFilterList, handleListAdd: handleListAdd, handleListRemove: handleListRemove, draggableItemActive: stateTest}}>
 
                 <Route path={['/', '/card/:cardID', '/createElement']} exact >
                     {
@@ -220,6 +237,7 @@ export const App = () => {
                             id = {id}
                             name = {listName}
                             content = {handleFilterList(id)}
+                            xd = {interxD}
                             />
                         }
                         )}

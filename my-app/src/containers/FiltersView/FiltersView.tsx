@@ -39,6 +39,9 @@ export const FiltersView:  React.FC<FiltersViewProps> = ({}) => {
                 return listCards;
         }
     }
+    const interOnDrop = (draggableItemID: number) =>{
+        console.log(draggableItemID);
+    }
 
     return (<div className="filtersView">
         <LateralBar 
@@ -57,6 +60,7 @@ export const FiltersView:  React.FC<FiltersViewProps> = ({}) => {
                         dateAdded = {dateAdded}
                         dateCompleted = {dateCompleted}
                         comments = {comments}   
+                        onDropItem = {interOnDrop}
                     />   
                         </div>})
     }
