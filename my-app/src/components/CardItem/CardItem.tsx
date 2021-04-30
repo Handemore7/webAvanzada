@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { InitialListsContext } from '../../utils/InitialListsContext';
-import { DragAndDropItems } from '../../utils/DragAndDropItems';
 import './CardItem.css';
 
 export interface CardItemProps {
@@ -49,7 +48,7 @@ export const CardItem:  React.FC<CardItemProps> = ({id, title, image, category, 
     }
 
     const onDragStart = (event: any) =>{
-        
+        onDropItem(id);
         //console.log('dragStart: '+id);
     }   
 
@@ -58,7 +57,7 @@ export const CardItem:  React.FC<CardItemProps> = ({id, title, image, category, 
     } 
     const onDragEnd = (event: any) =>{
         //console.log(DraggableItemActiveId);
-        onDropItem(id);
+        
     } 
 
     const deleteAndAddItem = (droppable: number, draggable: number) =>{
@@ -77,7 +76,9 @@ export const CardItem:  React.FC<CardItemProps> = ({id, title, image, category, 
                         <div className="CardItem__categories">
                             {
                                 categoryArray.map(elem => {
-                                    return  <div className="CardItem__categories--item">
+                                    return  <div 
+                                    key = {elem}
+                                    className="CardItem__categories--item">
                                                 <span>{elem}</span>
                                             </div>
                                 })

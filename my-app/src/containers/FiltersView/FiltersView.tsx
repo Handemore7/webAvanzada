@@ -51,6 +51,7 @@ export const FiltersView:  React.FC<FiltersViewProps> = ({}) => {
     {
         contentMain.map(({id, title, type, rating, image, category, dateAdded, dateCompleted, comments}) => {  
             return  <div className="filterView__card"><CardItem 
+                        key = {id}
                         id = {id}
                         title = {title}
                         type = {type}

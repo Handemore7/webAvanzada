@@ -173,20 +173,28 @@ export const App = () => {
         const copy = cards.slice();
         copy[indexDrag].list = newList;
         console.log(copy);
-        arrayMove(copy, indexDrag, indexDrop, true);
-        setCards(copy); 
+        
+        setCards(()=>{
+            return arrayMove(copy, indexDrag, indexDrop, true);
+        }); 
     }
 
+    //Aqui pasan cosas raras con ese splice, deberia buscar alguna otra manera mas optima para eliminar el elemento del arreglo y volverlo a poner en la posicion correcta.
     function arrayMove(arr: CardItemType [], fromIndex: number, toIndex: number, dropUp: boolean) {
         var element = arr[fromIndex];
         if (dropUp) {
             console.log(arr[toIndex]);
             arr.splice(toIndex, 0, element);
-            arr.splice(fromIndex, 1);
+            if (fromIndex >= toIndex) {
+                arr.splice(fromIndex+1, 1);
+            }else{
+                arr.splice(fromIndex, 1);
+            }
         }else{
             arr.splice(fromIndex, 1);
             arr.splice(toIndex-1, 0, element);
         }
+        return arr;
     }
 
     const handleCreateCard = (title1: string, type1: string, category1: string, list1:number , comments1: string, img1: string) =>{  
@@ -220,7 +228,7 @@ export const App = () => {
 
     const [stateTest, setStateTest] = React.useState(0);
     const interxD = (value: any)=>{
-        setStateTest(value)
+        setStateTest(value);
     }
     
     return (<main className="AppMain">
