@@ -2,13 +2,15 @@ import React from 'react';
 import { HashRouter, Route, Link } from 'react-router-dom';
 import { List } from '../../components/List/List';
 import { MainItem } from '../../components/MainItem/MainItem';
-import { CardItemType } from '../../utils/cardItemType';
+import { CardItemType, listType } from '../../utils/cardItemType';
+import { ANIME__COLLECTION } from '../../utils/firebase';
 import { InitialListsContext } from '../../utils/InitialListsContext';
 import { CreateElement } from '../CreateElement/CreateElement';
 import { FiltersView } from '../FiltersView/FiltersView';
 import './App.css';
 
-const initialCards = [
+
+/* const initialCards = [
     {
         id: 1,
         title: 'Horimiya',
@@ -117,7 +119,25 @@ const initialCards = [
         dateCompleted: '500000050000',
         comments: 'Una chica adopta a un perro y lo lleva a casa, ¡pero resulta que en su vida anterior, ese perro era Oda Nobunaga! Esta obra nos cuenta la historia del famoso personaje, ahora renacido como un perro akita.',
     },
-    ];
+    ]; 
+    */
+
+ const defaultCards = [
+    {
+        id: -1,
+        title: 'default',
+        type: 'default',
+        list: -1,
+        rating: -1,
+        image: 'default',
+        category: 'default',
+        dateAdded: 'default',
+        dateCompleted: 'default',
+        comments: 'default',
+        order: -1
+    }
+]; 
+
 const initialLists = [
     {
         id: 1,
@@ -141,10 +161,21 @@ const initialLists = [
     },
     ];
 
+
 export const App = () => {
     
     const [lists, setLists] = React.useState(initialLists);
-    const [cards, setCards] = React.useState(initialCards);
+    const [cards, setCards] = React.useState(defaultCards);
+
+      React.useEffect(() => {
+        ANIME__COLLECTION.onSnapshot(snapshot =>{
+            const list: CardItemType[]= [];
+            snapshot.forEach(doc => {
+                list.push(doc.data() as CardItemType);
+            });
+            setCards(list)
+        });
+    }, []);  
 
     const handleListRemove = (id: number) => {
         const index = cards.findIndex((elem) => {
@@ -155,7 +186,7 @@ export const App = () => {
         setCards(copy);
     } 
 
-    const handleListAdd = (cardIdDroppable: number, cardIdDraggable: number) => {
+    const handleListAdd = (cardIdDroppable: number, cardIdDraggable: number, upOrDown: boolean) => {
         console.log('drop: '+cardIdDroppable);
         console.log('drag: '+cardIdDraggable);
         
@@ -171,12 +202,66 @@ export const App = () => {
         });
 
         const copy = cards.slice();
-        copy[indexDrag].list = newList;
+        
+        if(upOrDown){
+            var dropZoneItems: CardItemType[] = [];
+            for (let i = 0; i < copy.length; i++) {
+                if (copy[i].list == copy[indexDrop].list) {
+                    dropZoneItems.push(copy[i]);
+                }
+            }
+            console.log(copy);
+            
+            for (let i = copy[indexDrop].order-1; i < dropZoneItems.length; i++) {
+                dropZoneItems[i].order = dropZoneItems[i].order+1; 
+            }
+            copy[indexDrag].list = newList;
+            for (let i = 0; i < copy.length; i++) {
+                //console.log(copy[i]);
+                
+                /* if (copy[i].list == copy[indexDrop].list) {
+                    copy.splice(i,1);
+                } */
+            }
+            /* for (let i = 0; i < dropZoneItems.length; i++) {
+                copy.push(dropZoneItems[i]);
+            } */
+            copy[indexDrag].order = copy[indexDrop].order-1;
+
+        } else{
+            var dropZoneItems: CardItemType[] = [];
+            for (let i = 0; i < copy.length; i++) {
+                if (copy[i].list == copy[indexDrop].list) {
+                    dropZoneItems.push(copy[i]);
+                }
+            }
+            console.log(copy);
+            
+            for (let i = copy[indexDrop].order; i < dropZoneItems.length; i++) {
+                dropZoneItems[i].order = dropZoneItems[i].order+1; 
+            }
+            copy[indexDrag].list = newList;
+            for (let i = 0; i < copy.length; i++) {
+                //console.log(copy[i]);
+                
+                /* if (copy[i].list == copy[indexDrop].list) {
+                    copy.splice(i,1);
+                } */
+            }
+            /* for (let i = 0; i < dropZoneItems.length; i++) {
+                copy.push(dropZoneItems[i]);
+            } */
+            copy[indexDrag].order = copy[indexDrop].order+1;
+        }
+        
+        for (let i = 0; i < copy.length; i++) {
+            ANIME__COLLECTION.doc(String(copy[i].id)).set(copy[i]) 
+        }
         console.log(copy);
         
-        setCards(()=>{
+        /* setCards(()=>{
             return arrayMove(copy, indexDrag, indexDrop, true);
-        }); 
+        });  */
     }
 
     //Aqui pasan cosas raras con ese splice, deberia buscar alguna otra manera mas optima para eliminar el elemento del arreglo y volverlo a poner en la posicion correcta.
@@ -198,7 +283,6 @@ export const App = () => {
     }
 
     const handleCreateCard = (title1: string, type1: string, category1: string, list1:number , comments1: string, img1: string) =>{  
-        
         const copy = cards.slice();
         var newObj = {
             id: copy.length,
@@ -211,18 +295,33 @@ export const App = () => {
             dateAdded: '50000000000',
             dateCompleted: '50000005000',
             comments: comments1,
+            order: copy.length+1
         };
+        ANIME__COLLECTION.doc(String(newObj.id)).set(newObj);
         copy.push(newObj);
         setCards(copy);
     }
 
     const handleFilterList = (list: number) => {
         var arrayList: any = [];
-        cards.forEach(elem => {
-                if(elem.list === list){
-                    arrayList.push(elem);                
-                }
-            });
+        let countOrder: number = 0;
+        cards.forEach((elem) => {
+            if(elem.list === list){
+                arrayList.push(elem);   
+            }
+        });
+        arrayList.sort((a: CardItemType, b: CardItemType) => {
+            if (a.order < b.order) { return -1 }
+            if (a.order > b.order) { return 1 }
+            return 0;
+          });
+        for (let i = 0; i < arrayList.length; i++) {
+            countOrder++;
+            arrayList[i].order = countOrder;
+            //console.log(arrayList[i]);
+        }
+            console.log(arrayList);
+               
             return (arrayList);
     }
 
@@ -247,8 +346,8 @@ export const App = () => {
                             content = {handleFilterList(id)}
                             draggableItem = {interxD}
                             />
-                        }
-                        )}
+                        })
+                    }
                 </Route>       
                     
                 <Route path="/card/:cardID" render={() => <MainItem 

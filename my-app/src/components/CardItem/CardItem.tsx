@@ -19,7 +19,7 @@ export interface CardItemProps {
 export const CardItem:  React.FC<CardItemProps> = ({id, title, image, category, onClickItem, onDropItem}) => {  
 
     const {handleListAdd, handleListRemove, draggableItemActive } = React.useContext(InitialListsContext);
-    console.log('id: '+id+' contexto: '+draggableItemActive);
+    //console.log('id: '+id+' contexto: '+draggableItemActive);
     
     
     var categoryArray = category.split(', '); //Aqui hago la división de las categorías pero esto no debería ser aqui
@@ -31,20 +31,18 @@ export const CardItem:  React.FC<CardItemProps> = ({id, title, image, category, 
         event.preventDefault();
         //console.log('drop: '+id);
         
-        console.log("drop: "+id+" drag: "+draggableItemActive);
-        deleteAndAddItem(id, draggableItemActive)
     }
     const preventOnDropUp: React.DragEventHandler<HTMLDivElement> = (event) =>{
         event.preventDefault();
         //console.log(DraggableItemActiveId);
-        
-        //console.log('dropup: '+id);
+        console.log("dropUp: "+id+" drag: "+draggableItemActive);
+        deleteAndAddItem(id, draggableItemActive, true);
     }
     const preventOnDropDown: React.DragEventHandler<HTMLDivElement> = (event) =>{
         event.preventDefault();
         //console.log(DraggableItemActiveId);
-        
-        //console.log('dropdown: '+id);
+        console.log("dropDown: "+id+" drag: "+draggableItemActive);
+        deleteAndAddItem(id, draggableItemActive, false);
     }
 
     const onDragStart: React.DragEventHandler<HTMLDivElement> = (event) =>{
@@ -60,9 +58,10 @@ export const CardItem:  React.FC<CardItemProps> = ({id, title, image, category, 
         
     } 
 
-    const deleteAndAddItem = (droppable: number, draggable: number) =>{
-        handleListRemove(draggable);
-        handleListAdd(droppable, draggable);
+    const deleteAndAddItem = (droppable: number, draggable: number, upOrDown: boolean) =>{
+        //true = up --- false = down
+        //handleListRemove(draggable);
+        handleListAdd(droppable, draggable, upOrDown);
     }
 
     return (

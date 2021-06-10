@@ -1,7 +1,7 @@
 
 
 .MainItem{
-    
+    color: white;
     position: absolute;
     top: 0px;
     width: 100%;
@@ -19,7 +19,8 @@
 
 .MainItem--content{
     position: absolute;
-    background: #FE7979;
+    background: #543CCF;
+    border: 10px outset #7059E3;
     width: 80%;
     margin: 0px auto;
     display: flex;
@@ -36,6 +37,7 @@
 .MainItem img{
     display: inline;
     margin: 20px;
+    width: 50vh;
 }
 
 .content{

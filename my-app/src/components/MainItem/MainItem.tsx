@@ -35,6 +35,7 @@ export const MainItem :  React.FC<MainItemProps> =({ contentList}) => {
                         <h2>tipo: {cardElem.type}</h2>
                         <h3>id: {cardID}</h3>
                         <p>{cardElem.comments}</p>
+                        <p><strong> Order: {cardElem.order}</strong></p>
                     </div>
                 </div>
             </div>);

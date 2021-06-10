@@ -8,10 +8,11 @@ export type CardItemType = {
     category: string,
     dateAdded: string,
     dateCompleted: string,
-    comments: string
+    comments: string,
+    order: number
 }
 
-export type cardItemSimple = Omit<CardItemType, 'dateCompleted' | 'dateAdded' | 'id' | 'rating' > 
+export type cardItemSimple = Omit<CardItemType, 'dateCompleted' | 'dateAdded' | 'id' | 'rating' | 'order'> 
 
 export type imagesInfo = {
     backdrop_path: string | null
@@ -44,4 +45,9 @@ export type imagesData = {
     vote_count: number;
     name: string;
     original_name: string
+}
+
+export type listType = {
+        id: number,
+        listName: string,
 }

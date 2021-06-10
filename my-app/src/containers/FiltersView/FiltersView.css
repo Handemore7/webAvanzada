@@ -9,10 +9,11 @@
     position: absolute;
     top: 0;
     right: 0;
+    overflow: scroll;
+    height: 100vh;
 }
 .filterView__card {
     position: relative;
     width: 30vh;
     display: inline-flex;  
-    font-size: 12px;
 }
