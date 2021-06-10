@@ -10,7 +10,7 @@ export const LateralBar:  React.FC<LateralBarProps> = ({onListClickedID}) => {
 
     const { list } = React.useContext(InitialListsContext);
     
-    const interClickList = (event: any) =>{
+    const interClickList:React.MouseEventHandler<HTMLDivElement> = (event: any) =>{
         onListClickedID(parseInt(event.target.id));
     }
 

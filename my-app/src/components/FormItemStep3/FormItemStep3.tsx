@@ -1,15 +1,14 @@
 import * as React from 'react';
+import { cardItemSimple} from '../../utils/cardItemType';
 import { ToggleElementItem } from '../ToggleElement/ToggleElement';
 import './FormItemStep3.css';
 
 interface FormItemStep3Props {
-    infoCardReceived: any;
-    setInfoCard: any;
-    listContent: any;
+    infoCardReceived: cardItemSimple;
+    setInfoCard: React.Dispatch<React.SetStateAction<cardItemSimple>>;
 }
 
-export const FormItemStep3 :  React.FC<FormItemStep3Props> =({infoCardReceived, setInfoCard, listContent}) => {
-
+export const FormItemStep3 :  React.FC<FormItemStep3Props> =({infoCardReceived, setInfoCard}) => {
     var newObj = infoCardReceived;
 
 const [ categories, setCategories ] = React.useState('');
@@ -25,7 +24,7 @@ const handleCategoriesChange: React.ChangeEventHandler<HTMLInputElement> = (even
     var initialValueList4: boolean = false;
     var initialValueList5: boolean = false;
 
-const setInitialValue = (listType: any) =>{
+const setInitialValue = (listType: Number) =>{
 switch (listType) {
     case 1:
         initialValueList1 = true;

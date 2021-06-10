@@ -8,7 +8,7 @@ interface FiltersViewProps {
 
 }
 
-export const FiltersView:  React.FC<FiltersViewProps> = ({}) => {  
+export const FiltersView:  React.FC<FiltersViewProps> = () => {  
     
     const { listCards, handleFilterList } = React.useContext(InitialListsContext);
 

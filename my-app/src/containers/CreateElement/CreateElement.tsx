@@ -4,10 +4,14 @@ import { useHistory } from 'react-router';
 import { FormItemStep1 } from '../../components/FormItemStep1/FormItemStep1';
 import { FormItemStep2 } from '../../components/FormItemStep2/FormItemStep2';
 import { FormItemStep3 } from '../../components/FormItemStep3/FormItemStep3';
+import { cardItemSimple } from '../../utils/cardItemType';
 
 interface CreateElementProps {
-    handleCreateCard: (title:any, type:any, categories:any, list:any, comments:string, img:string) => void;
-    listContent: any;
+    handleCreateCard: (title: string, type: string, categories:string, list:number , comments:string, img:string) => void;
+    listContent: {
+        id: number;
+        listName: string;
+    }[];
 }
 
 export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, listContent}) => {
@@ -45,7 +49,7 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
         history.push("/");
     }
 
-    const interCreateCard = (objCard: any) => {
+    const interCreateCard = (objCard: cardItemSimple) => {
         handleCreateCard(objCard.title, objCard.type,objCard.category, objCard.list, objCard.comments, objCard.image);
     }
 
@@ -74,7 +78,9 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
         handleChangeFormStep(false);
     }
 
-    const setSearchResults = (list: any) =>{        
+    const setSearchResults = (list: []) =>{   
+        console.log(list);
+             
         setSearchImages(list);
     }
 
@@ -120,7 +126,6 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
                 return <FormItemStep3 
                         infoCardReceived = {infoCard}
                         setInfoCard = {setInfoCard}
-                        listContent = {listContent}
                 /> 
             default:
                 break;

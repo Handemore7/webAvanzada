@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Redirect, useHistory, useParams } from 'react-router';
+import { CardItemType } from '../../utils/cardItemType';
 import './MainItem.css';
 
 interface MainItemProps {
-    contentList: any;
+    contentList: CardItemType[];
 }
 
 export const MainItem :  React.FC<MainItemProps> =({ contentList}) => {
@@ -11,7 +12,7 @@ export const MainItem :  React.FC<MainItemProps> =({ contentList}) => {
     const {cardID} = useParams<{cardID: string}>();
     const history = useHistory();
 
-    const cardElem = contentList.find((elem: any) => {
+    const cardElem = contentList.find((elem: CardItemType) => {
         return elem.id === parseInt(cardID);
     });
     

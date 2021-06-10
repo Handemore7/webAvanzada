@@ -18,44 +18,44 @@ export interface CardItemProps {
 
 export const CardItem:  React.FC<CardItemProps> = ({id, title, image, category, onClickItem, onDropItem}) => {  
 
-    const { list, handleListAdd, handleListRemove, draggableItemActive } = React.useContext(InitialListsContext);
+    const {handleListAdd, handleListRemove, draggableItemActive } = React.useContext(InitialListsContext);
     console.log('id: '+id+' contexto: '+draggableItemActive);
     
     
     var categoryArray = category.split(', '); //Aqui hago la división de las categorías pero esto no debería ser aqui
-    const prevent = (event: any) =>{
+    const prevent: React.DragEventHandler<HTMLDivElement> = (event) =>{
         event.preventDefault();
     }
 
-    const preventOnDrop = (event: any) =>{
+    const preventOnDrop : React.DragEventHandler<HTMLDivElement>= (event) =>{
         event.preventDefault();
         //console.log('drop: '+id);
         
         console.log("drop: "+id+" drag: "+draggableItemActive);
         deleteAndAddItem(id, draggableItemActive)
     }
-    const preventOnDropUp = (event: any) =>{
+    const preventOnDropUp: React.DragEventHandler<HTMLDivElement> = (event) =>{
         event.preventDefault();
         //console.log(DraggableItemActiveId);
         
         //console.log('dropup: '+id);
     }
-    const preventOnDropDown = (event: any) =>{
+    const preventOnDropDown: React.DragEventHandler<HTMLDivElement> = (event) =>{
         event.preventDefault();
         //console.log(DraggableItemActiveId);
         
         //console.log('dropdown: '+id);
     }
 
-    const onDragStart = (event: any) =>{
+    const onDragStart: React.DragEventHandler<HTMLDivElement> = (event) =>{
         onDropItem(id);
         //console.log('dragStart: '+id);
     }   
 
-    const onDragItem = (event: any) =>{
+    const onDragItem: React.DragEventHandler<HTMLDivElement> = (event) =>{
 
     } 
-    const onDragEnd = (event: any) =>{
+    const onDragEnd: React.DragEventHandler<HTMLDivElement> = (event) =>{
         //console.log(DraggableItemActiveId);
         
     } 

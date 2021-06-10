@@ -7,15 +7,15 @@ export interface ListProps {
     id: number;
     name: string;
     content: CardItemProps[];
-    xd: (value: any)=>void;
+    draggableItem: (value: any)=>void;
 }
 
-export const List:  React.FC<ListProps> = ({id, name, content, xd}) => {
+export const List:  React.FC<ListProps> = ({id, name, content, draggableItem}) => {
 
     const history = useHistory();
 
     const interOnDrop = (draggableItemID: number) =>{
-        xd(draggableItemID);
+        draggableItem(draggableItemID);
     }
     
     return (<div className={`List List${id}`} > 
@@ -23,7 +23,7 @@ export const List:  React.FC<ListProps> = ({id, name, content, xd}) => {
             <p>{name}</p> <span>{content.length}</span>
         </div>
         <div className="List__content">
-        {content.map((elem: any) => {
+        {content.map((elem: CardItemProps) => {
 
             const interClickItem = () =>{
                 history.push(`card/${elem.id}`);

@@ -4,13 +4,13 @@ import './ToggleElement.css';
 export interface ToggleElementItemProps {
     type: string;
     title: string;
-    state: any;
+    state: boolean;
     imgURL?: string;
     interValueChange: (value:any)=>void;
 }
 
 export const ToggleElementItem:  React.FC<ToggleElementItemProps> = ({title, state, imgURL, interValueChange, type}) => {  
-    const onValueChange = (event: any)=>{
+    const onValueChange: React.ChangeEventHandler<HTMLInputElement> = (event) =>{
         interValueChange(event.target.checked);
     }
     

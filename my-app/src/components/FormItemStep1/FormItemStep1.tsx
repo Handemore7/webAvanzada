@@ -1,10 +1,11 @@
 import * as React from 'react';
+import { cardItemSimple } from '../../utils/cardItemType';
 import { ToggleElementItem } from '../ToggleElement/ToggleElement';
 import './FormItemStep1.css';
 
 interface FormItemStep1Props {
     infoCardReceived: any;
-    setInfoCard: any;
+    setInfoCard: React.Dispatch<React.SetStateAction<cardItemSimple>>;
 }
 
 export const FormItemStep1 :  React.FC<FormItemStep1Props> =({infoCardReceived, setInfoCard}) => {
@@ -18,11 +19,11 @@ export const FormItemStep1 :  React.FC<FormItemStep1Props> =({infoCardReceived, 
       setInfoCard(newObj);
   }
 
-  var initialValueOva: any = false;
-  var initialValuePelicula: any = false;
-  var initialValueAnime: any = false;
+  var initialValueOva: boolean = false;
+  var initialValuePelicula: boolean = false;
+  var initialValueAnime: boolean = false;
 
-  const setInitialValue = (type: any) =>{
+  const setInitialValue = (type: string) =>{
     switch (type) {
       case 'ova':
         initialValueOva = true;

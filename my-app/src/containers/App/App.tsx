@@ -227,7 +227,7 @@ export const App = () => {
     }
 
     const [stateTest, setStateTest] = React.useState(0);
-    const interxD = (value: any)=>{
+    const interxD = (value: number)=>{
         setStateTest(value);
     }
     
@@ -245,7 +245,7 @@ export const App = () => {
                             id = {id}
                             name = {listName}
                             content = {handleFilterList(id)}
-                            xd = {interxD}
+                            draggableItem = {interxD}
                             />
                         }
                         )}
