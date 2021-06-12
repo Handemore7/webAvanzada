@@ -2,7 +2,7 @@ import React from 'react';
 import { HashRouter, Route, Link } from 'react-router-dom';
 import { List } from '../../components/List/List';
 import { MainItem } from '../../components/MainItem/MainItem';
-import { CardItemType, listType } from '../../utils/cardItemType';
+import { CardItemType} from '../../utils/cardItemType';
 import { ANIME__COLLECTION } from '../../utils/firebase';
 import { InitialListsContext } from '../../utils/InitialListsContext';
 import { CreateElement } from '../CreateElement/CreateElement';
