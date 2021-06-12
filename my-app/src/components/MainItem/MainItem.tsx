@@ -1,16 +1,19 @@
 import * as React from 'react';
 import { Redirect, useHistory, useParams } from 'react-router';
 import { CardItemType } from '../../utils/cardItemType';
+import { InitialListsContext } from '../../utils/InitialListsContext';
 import './MainItem.css';
 
 interface MainItemProps {
     contentList: CardItemType[];
 }
 
-export const MainItem :  React.FC<MainItemProps> =({ contentList}) => {
+export const MainItem :  React.FC<MainItemProps> =({contentList}) => {
     
     const {cardID} = useParams<{cardID: string}>();
     const history = useHistory();
+
+    const { handleDeleteCard } = React.useContext(InitialListsContext);
 
     const cardElem = contentList.find((elem: CardItemType) => {
         return elem.id === parseInt(cardID);
@@ -18,6 +21,9 @@ export const MainItem :  React.FC<MainItemProps> =({ contentList}) => {
     
     const interDropback = () =>{    
         history.push("/");
+    }
+    const onDeleteItem: React.MouseEventHandler<HTMLButtonElement> = (event) =>{
+        handleDeleteCard(cardID);
     }
     
     if (cardElem === undefined) {
@@ -36,6 +42,7 @@ export const MainItem :  React.FC<MainItemProps> =({ contentList}) => {
                         <h3>id: {cardID}</h3>
                         <p>{cardElem.comments}</p>
                         <p><strong> Order: {cardElem.order}</strong></p>
+                        <button onClick={onDeleteItem}>Eliminar</button>
                     </div>
                 </div>
             </div>);

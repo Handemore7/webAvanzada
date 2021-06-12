@@ -264,24 +264,6 @@ export const App = () => {
         });  */
     }
 
-    //Aqui pasan cosas raras con ese splice, deberia buscar alguna otra manera mas optima para eliminar el elemento del arreglo y volverlo a poner en la posicion correcta.
-    function arrayMove(arr: CardItemType [], fromIndex: number, toIndex: number, dropUp: boolean) {
-        var element = arr[fromIndex];
-        if (dropUp) {
-            console.log(arr[toIndex]);
-            arr.splice(toIndex, 0, element);
-            if (fromIndex >= toIndex) {
-                arr.splice(fromIndex+1, 1);
-            }else{
-                arr.splice(fromIndex, 1);
-            }
-        }else{
-            arr.splice(fromIndex, 1);
-            arr.splice(toIndex-1, 0, element);
-        }
-        return arr;
-    }
-
     const handleCreateCard = (title1: string, type1: string, category1: string, list1:number , comments1: string, img1: string) =>{  
         const copy = cards.slice();
         var newObj = {
@@ -302,6 +284,14 @@ export const App = () => {
         setCards(copy);
     }
 
+    const handleDeleteCard = (id: string) => {
+        ANIME__COLLECTION.doc(id).delete().then(() => {
+            //alert("Lo borraste capo");
+        }).catch((error) => {
+            //console.error("Error removing document: ", error);
+        });
+    }
+
     const handleFilterList = (list: number) => {
         var arrayList: any = [];
         let countOrder: number = 0;
@@ -320,8 +310,6 @@ export const App = () => {
             arrayList[i].order = countOrder;
             //console.log(arrayList[i]);
         }
-            console.log(arrayList);
-               
             return (arrayList);
     }
 
@@ -334,7 +322,7 @@ export const App = () => {
 
         <HashRouter basename={process.env.PUBLIC_URL}>
 
-            <InitialListsContext.Provider value={{list: lists, listCards: cards, handleFilterList: handleFilterList, handleListAdd: handleListAdd, handleListRemove: handleListRemove, draggableItemActive: stateTest}}>
+            <InitialListsContext.Provider value={{list: lists, listCards: cards, handleFilterList: handleFilterList, handleListAdd: handleListAdd, handleListRemove: handleListRemove, draggableItemActive: stateTest, handleDeleteCard: handleDeleteCard}}>
 
                 <Route path={['/', '/card/:cardID', '/createElement']} exact >
                     {

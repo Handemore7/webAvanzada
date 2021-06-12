@@ -18,7 +18,7 @@ export interface CardItemProps {
 
 export const CardItem:  React.FC<CardItemProps> = ({id, title, image, category, onClickItem, onDropItem}) => {  
 
-    const {handleListAdd, handleListRemove, draggableItemActive } = React.useContext(InitialListsContext);
+    const {handleListAdd, draggableItemActive } = React.useContext(InitialListsContext);
     //console.log('id: '+id+' contexto: '+draggableItemActive);
     
     
@@ -55,12 +55,10 @@ export const CardItem:  React.FC<CardItemProps> = ({id, title, image, category, 
     } 
     const onDragEnd: React.DragEventHandler<HTMLDivElement> = (event) =>{
         //console.log(DraggableItemActiveId);
-        
     } 
 
     const deleteAndAddItem = (droppable: number, draggable: number, upOrDown: boolean) =>{
         //true = up --- false = down
-        //handleListRemove(draggable);
         handleListAdd(droppable, draggable, upOrDown);
     }
 
