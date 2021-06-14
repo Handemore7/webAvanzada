@@ -87,10 +87,12 @@ const handleCommentsChange: React.ChangeEventHandler<HTMLInputElement> = (event)
 const [ categories, setCategories ] = React.useState([] as string[]);
 const handleCategoriesChange: React.KeyboardEventHandler<HTMLInputElement> = (event: any) => {
     if (event.key === 'Enter' || event.key === 'Escape') {
-        let newArray = newObj.categories.slice();
+        let newArray = categories.slice();
         newArray.push(event.target.value)
         newObj.categories = newArray;
+        setCategories(newArray);
         setInfoCard(newObj);
+        //Setear el input en '' luego de digitar una categoria
         event.target.value = '';
         event.preventDefault();
         event.stopPropagation();
@@ -106,6 +108,20 @@ const setAllStatesFalse = ()=>{
 }
     return( <div>
                 <div className="inputInfoCard">Categorias: <input  onKeyDown={handleCategoriesChange}type="text"/> </div>
+                    {
+                        categories.map((elem, index) => {
+                            return  <div>
+                                        <span>{elem}</span>
+                                        <button onClick={() =>{
+                                            let newArray = categories.slice();
+                                            newArray.splice(index, 1);
+                                            newObj.categories = newArray;
+                                            setInfoCard(newObj);
+                                            setCategories(newArray);
+                                        }}>X</button>
+                                    </div>
+                        })
+                    }
                 <div className="inputInfoCard">Lista: 
                     <div>
                                     <ToggleElementItem 

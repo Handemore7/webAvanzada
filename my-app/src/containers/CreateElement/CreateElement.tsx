@@ -79,8 +79,6 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
     }
 
     const setSearchResults = (list: []) =>{   
-        console.log(list);
-             
         setSearchImages(list);
     }
 
@@ -88,11 +86,10 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
         () => {
             var Title: string;
             if (infoCard.title === '') {
-                Title = 'Nichijou'
+                Title = '.'
             }else{
                 Title = infoCard.title;
             }
-            console.log(Title);
             fetch(`https://api.themoviedb.org/3/search/tv?api_key=ad7151c6dd6ce04898723178f00ce514&query=${Title}`, {
                 "method": "GET",
             })
