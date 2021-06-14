@@ -36,7 +36,7 @@ export const List:  React.FC<ListProps> = ({id, name, content, draggableItem}) =
             type = {elem.type}
             rating = {elem.rating}
             image = {elem.image}
-            category = {elem.category}
+            categories = {elem.categories}
             dateAdded = {elem.dateAdded}
             dateCompleted = {elem.dateCompleted}
             comments = {elem.comments}   

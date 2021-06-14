@@ -7,7 +7,7 @@ import { FormItemStep3 } from '../../components/FormItemStep3/FormItemStep3';
 import { cardItemSimple } from '../../utils/cardItemType';
 
 interface CreateElementProps {
-    handleCreateCard: (title: string, type: string, categories:string, list:number , comments:string, img:string) => void;
+    handleCreateCard: (title: string, type: string, categories:string[], list:number , comments:string, img:string) => void;
     listContent: {
         id: number;
         listName: string;
@@ -39,7 +39,7 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
     const [ infoCard, setInfoCard ] = React.useState({
         title: '',
         type: '',
-        category: '',
+        categories: [] as string[],
         list: 2,
         comments: '',
         image: 'empty',
@@ -50,7 +50,7 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
     }
 
     const interCreateCard = (objCard: cardItemSimple) => {
-        handleCreateCard(objCard.title, objCard.type,objCard.category, objCard.list, objCard.comments, objCard.image);
+        handleCreateCard(objCard.title, objCard.type,objCard.categories, objCard.list, objCard.comments, objCard.image);
     }
 
     const handleChangeFormStep= (next: boolean) =>{        

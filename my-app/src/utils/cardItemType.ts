@@ -5,7 +5,7 @@ export type CardItemType = {
     list: number,
     rating: number,
     image: string,
-    category: string,
+    categories: string[],
     dateAdded: string,
     dateCompleted: string,
     comments: string,

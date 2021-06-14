@@ -130,7 +130,7 @@ import './App.css';
         list: -1,
         rating: -1,
         image: 'default',
-        category: 'default',
+        categories: ['default'],
         dateAdded: 'default',
         dateCompleted: 'default',
         comments: 'default',
@@ -264,8 +264,9 @@ export const App = () => {
         });  */
     }
 
-    const handleCreateCard = (title1: string, type1: string, category1: string, list1:number , comments1: string, img1: string) =>{  
+    const handleCreateCard = (title1: string, type1: string, categories1: string[], list1:number , comments1: string, img1: string) =>{  
         const copy = cards.slice();
+        
         var newObj = {
             id: copy.length,
             title: title1,
@@ -273,7 +274,7 @@ export const App = () => {
             list: list1,
             rating: 5,
             image: img1,
-            category: category1,
+            categories: categories1,
             dateAdded: '50000000000',
             dateCompleted: '50000005000',
             comments: comments1,

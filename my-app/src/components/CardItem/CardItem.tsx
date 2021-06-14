@@ -8,7 +8,7 @@ export interface CardItemProps {
     type: string;
     rating?: number;
     image: string;
-    category: string;
+    categories: string[];
     dateAdded: string;
     dateCompleted?: string;
     comments?: string;
@@ -16,13 +16,10 @@ export interface CardItemProps {
     onDropItem: (draggableItemID: number) => void;
 }
 
-export const CardItem:  React.FC<CardItemProps> = ({id, title, image, category, onClickItem, onDropItem}) => {  
+export const CardItem:  React.FC<CardItemProps> = ({id, title, image, categories, onClickItem, onDropItem}) => {      
 
     const {handleListAdd, draggableItemActive } = React.useContext(InitialListsContext);
     //console.log('id: '+id+' contexto: '+draggableItemActive);
-    
-    
-    var categoryArray = category.split(', '); //Aqui hago la división de las categorías pero esto no debería ser aqui
     const prevent: React.DragEventHandler<HTMLDivElement> = (event) =>{
         event.preventDefault();
     }
@@ -72,7 +69,7 @@ export const CardItem:  React.FC<CardItemProps> = ({id, title, image, category, 
                         <h1 className="CardItem__title">{title}</h1>
                         <div className="CardItem__categories">
                             {
-                                categoryArray.map(elem => {
+                                categories.map(elem => {
                                     return  <div 
                                     key = {elem}
                                     className="CardItem__categories--item">

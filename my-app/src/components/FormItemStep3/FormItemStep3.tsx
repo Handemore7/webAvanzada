@@ -11,13 +11,6 @@ interface FormItemStep3Props {
 export const FormItemStep3 :  React.FC<FormItemStep3Props> =({infoCardReceived, setInfoCard}) => {
     var newObj = infoCardReceived;
 
-const [ categories, setCategories ] = React.useState('');
-const handleCategoriesChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-    setCategories(event.target.value);
-    newObj.category = event.target.value;
-    setInfoCard(newObj);
-}
-
     var initialValueList1: boolean = false;
     var initialValueList2: boolean = false;
     var initialValueList3: boolean = false;
@@ -91,6 +84,19 @@ const handleCommentsChange: React.ChangeEventHandler<HTMLInputElement> = (event)
     setInfoCard(newObj);
 }
 
+const [ categories, setCategories ] = React.useState([] as string[]);
+const handleCategoriesChange: React.KeyboardEventHandler<HTMLInputElement> = (event: any) => {
+    if (event.key === 'Enter' || event.key === 'Escape') {
+        let newArray = newObj.categories.slice();
+        newArray.push(event.target.value)
+        newObj.categories = newArray;
+        setInfoCard(newObj);
+        event.target.value = '';
+        event.preventDefault();
+        event.stopPropagation();
+    }
+}
+
 const setAllStatesFalse = ()=>{
     setList1(false);
     setList2(false);
@@ -99,7 +105,7 @@ const setAllStatesFalse = ()=>{
     setList5(false);
 }
     return( <div>
-                <div className="inputInfoCard">Categorias: <input value={categories} onChange={handleCategoriesChange}type="text"/> </div>
+                <div className="inputInfoCard">Categorias: <input  onKeyDown={handleCategoriesChange}type="text"/> </div>
                 <div className="inputInfoCard">Lista: 
                     <div>
                                     <ToggleElementItem 

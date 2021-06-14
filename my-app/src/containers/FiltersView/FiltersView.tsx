@@ -49,7 +49,7 @@ export const FiltersView:  React.FC<FiltersViewProps> = () => {
         />
         <div className="filterView__container">
     {
-        contentMain.map(({id, title, type, rating, image, category, dateAdded, dateCompleted, comments}) => {  
+        contentMain.map(({id, title, type, rating, image, categories, dateAdded, dateCompleted, comments}) => {  
             return  <div className="filterView__card"><CardItem 
                         key = {id}
                         id = {id}
@@ -57,7 +57,7 @@ export const FiltersView:  React.FC<FiltersViewProps> = () => {
                         type = {type}
                         rating = {rating}
                         image = {image}
-                        category = {category}
+                        categories = {categories}
                         dateAdded = {dateAdded}
                         dateCompleted = {dateCompleted}
                         comments = {comments}   

@@ -38,7 +38,7 @@ export const MainItem :  React.FC<MainItemProps> =({contentList}) => {
     }
 
     // el verdadero tipado de esto es React.KeyboardEventHandler<HTMLInputElement> pero no se porque no me deja acceder a event.target.value si igual es un htmlinputevent
-    const toggleOff:any = (event: any) =>{
+    const toggleOff:React.KeyboardEventHandler<HTMLInputElement>  = (event: any) =>{
         
         if (event.key === 'Enter' || event.key === 'Escape') {
             setToggle(true);
