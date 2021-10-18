@@ -80,6 +80,7 @@ const setStatesFalse = () => {
     if (pelicula) {
         return 'pelicula';
     }
+    return 'Default';
   }
 
     return( <div className="formStep1">

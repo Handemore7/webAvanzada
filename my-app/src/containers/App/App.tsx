@@ -266,9 +266,9 @@ export const App = () => {
 
     const handleCreateCard = (title1: string, type1: string, categories1: string[], list1:number , comments1: string, img1: string) =>{  
         const copy = cards.slice();
-        
+        let newD = new Date();
         var newObj = {
-            id: copy.length,
+            id: newD.getTime(),
             title: title1,
             type: type1,
             list: list1,

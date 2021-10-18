@@ -40,7 +40,7 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
         title: '',
         type: '',
         categories: [] as string[],
-        list: 2,
+        list: 0,
         comments: '',
         image: 'empty',
     });
@@ -50,6 +50,8 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
     }
 
     const interCreateCard = (objCard: cardItemSimple) => {
+        console.log(objCard);
+        
         handleCreateCard(objCard.title, objCard.type,objCard.categories, objCard.list, objCard.comments, objCard.image);
     }
 
@@ -58,7 +60,7 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
                         let newFormStep = formStep + 1;
                         setFormStep(newFormStep);                        
                         
-                        if (newFormStep === 4) {                            
+                        if (newFormStep > 3) {                            
                             interCreateCard(infoCard);
                             history.push("/")
                         }
@@ -66,6 +68,8 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
                         if (formStep > 1) {
                             let newFormStep = formStep - 1;
                             setFormStep(newFormStep);                            
+                        } else {
+                            history.push("/")
                         }
                     }   
     }
@@ -136,8 +140,8 @@ export const CreateElement :  React.FC<CreateElementProps> =({handleCreateCard, 
                     { renderSwitch(formStep) }
                 </div>
                 <div className="navButtons">
-                    <button onClick={backClicked} className="NavButton NavButton--back">Atras</button>
-                    <button onClick={nextClicked} className="NavButton NavButton--next">Siguiente</button>
+                    <button onClick={backClicked} className="NavButton NavButton--back">{formStep == 1? 'Cancelar': 'Atras' }</button>
+                    <button onClick={nextClicked} className="NavButton NavButton--next">{formStep == 3? 'Completar': 'Siguiente' }</button>
                 </div>
             </div>);
 }
